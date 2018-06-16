@@ -7,7 +7,7 @@ from django.conf import settings
 
 class Question(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asked_by')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asked_by', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250, unique_for_date='created_time')
     content = models.CharField(max_length=140)
     created_time = models.DateTimeField(auto_now_add=True)
@@ -36,7 +36,7 @@ class Tag(models.Model):
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     content = models.TextField()
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='answered_by')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='answered_by', on_delete=models.CASCADE)
     upvoted = models.BooleanField(default=False)
 
     # def __str__(self):
@@ -44,10 +44,10 @@ class Answer(models.Model):
 
 
 class QuestionUpvote(models.Model):
-    question = models.OneToOneField(Question, related_name='question_upvote')
-    voter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='voted_by')
+    question = models.OneToOneField(Question, related_name='question_upvote', on_delete=models.CASCADE)
+    voter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='voted_by', on_delete=models.CASCADE)
 
 
 class AnswerUpvote(models.Model):
-    answer = models.OneToOneField(Answer, related_name='answer_upvote')
-    voter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='upvoted_by')
+    answer = models.OneToOneField(Answer, related_name='answer_upvote', on_delete=models.CASCADE)
+    voter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='upvoted_by', on_delete=models.CASCADE)

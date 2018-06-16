@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third Party Apps
-    'djangorestframework',
+    'crispy_forms',
+    'django_filters',
+    'rest_framework',
+    'sorl.thumbnail',
 
 
     # Our Apps
