@@ -1,14 +1,18 @@
 from django import forms
 from .models import Question
+from django.contrib.auth.models import User
 
 
 class QuestionModelForm(forms.ModelForm):
 
+    # def __init__(self, *args, **kwargs):
+    #     super(QuestionModelForm, self).__init__(*args, **kwargs)
+    #     self.fields['respondent'].queryset = User.objects.all()
+
     class Meta:
         model = Question
-        fields = ('title', 'content', 'respondent')
-        widgets = {'next_visit': forms.DateInput(attrs={'class': 'form-control dateinput'}),
-                   'respondent': forms.Select(attrs={'class': 'selectpicker',
-                                                     'data-live-search': 'true',
-                                                     'title': 'Select St'}),
-                   }
+        fields = ('title', 'content',)
+        # widgets = {'respondent': forms.Select(attrs={'class': 'selectpicker',
+        #                                              'data-live-search': 'true',
+        #                                              'title': 'Select St'}),
+        #            }

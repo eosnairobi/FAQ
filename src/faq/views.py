@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .forms import QuestionModelForm
 from .models import Question
 
@@ -8,7 +9,11 @@ def dashboard(request):
 
 
 def forum(request):
-    questions = Question.objects.all()
+    all_questions = Question.objects.all()
+    paginator = Paginator(all_questions, 5)  # Show 5 contacts per page
+
+    page = request.GET.get('page')
+    questions = paginator.get_page(page)
     if request.method == 'GET':
         question_form = QuestionModelForm()
 

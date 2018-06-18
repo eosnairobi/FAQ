@@ -1,28 +1,24 @@
- {% load thumbnail %} {% load static crispy_forms_tags %}
+ {% load thumbnail static crispy_forms_tags %}
 
 <script src="{% static 'dashboard/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
-
-<div class="modal fade" id="ask-dialog">
-    <div class="modal-dialog">
-     <form id='question_form'>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ask Your Question</h5>
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                {# <hr> #}
-                {# <div id="err"></div> #}
-            </div>
-            <div class="modal-body">
-               <div id="err"></div>
-                    {{ question_form | crispy }}   
-              
-            </div>
-            <div class="modal-footer">
-                <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
-                <input type="submit" name="submit_question" class="btn btn-success">
-                {# <a href="javascript:;" class="btn btn-success">Action</a> #}
-            </div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="ask-dialog" aria-hidden="true">
+{# <div class="modal fade" id="ask-dialog"> #}
+    <div class="modal-dialog modal-lg">
+    {# <div class="modal-dialog"> #}
+        <form id='question_form'>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">Ask Your Question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div id="err"></div>
+                    {{ question_form | crispy }}
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
+                    <input type="submit" name="submit_question" class="btn btn-success"> {# <a href="javascript:;" class="btn btn-success">Action</a> #}
+                </div>
         </form>
         </div>
     </div>
@@ -35,8 +31,7 @@
                             <img class="img-circle" src="" style="max-width: 70px" align="Profile Name">
                         </a>
         <div class="media-body">
-            <b>{{ question.title  }}</b>
-            {# <p class="m-b-0"><b>{{ question.author.get_full_name }}</b></p> #}
+            <b>{{ question.title  }}</b> 
             <div class="m-b-1 text-muted">
                 <small><a class="strong" href="">@{{question.author }}</a> -{{ question.created_time }}</small>
             </div>
@@ -53,7 +48,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-
+    $('#ask-dialog').modal('handleUpdate');
     var siteURL = '127.0.0.1:8000/tags/',
         entries = $('.user_content span');
 
@@ -75,7 +70,6 @@ $(document).ready(function() {
 
 });
 </script>
-
 {% empty %}
 <div class="alert alert-warning">
     <i class="fa fa-info-circle fa-lg m-r-5 pull-left m-t-2"></i> Hey Eosian, it looks Deserted O'er Here. Make it lively.
