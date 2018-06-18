@@ -89,7 +89,7 @@
                                     <nav aria-label="Questions">
                                         <ul class="pagination justify-content-left">
                                             {% if items.has_previous %}
-                                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a></li>
+                                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo; Previous</a></li>
                                             {% else %}
                                             <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo;</span></a></li>
                                             {% endif %} {% for i in items.paginator.page_range %} {% if items.number == i %}
@@ -97,7 +97,7 @@
                                             {% else %}
                                             <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
                                             {% endif %} {% endfor %} {% if items.has_next %}
-                                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;</a></li>
+                                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;Next</a></li>
                                             {% else %}
                                             <li class="page-item disabled"><a class="page-link" href="#"><span>&raquo;</span></a></li>
                                             {% endif %}
