@@ -1,0 +1,84 @@
+ {% load thumbnail %} {% load static crispy_forms_tags %}
+
+<script src="{% static 'dashboard/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<div class="modal fade" id="ask-dialog">
+    <div class="modal-dialog">
+     <form id='question_form'>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ask Your Question</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                {# <hr> #}
+                {# <div id="err"></div> #}
+            </div>
+            <div class="modal-body">
+               <div id="err"></div>
+                    {{ question_form | crispy }}   
+              
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
+                <input type="submit" name="submit_question" class="btn btn-success">
+                {# <a href="javascript:;" class="btn btn-success">Action</a> #}
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+{% for question in questions %}
+<div class="card card-block" id='post-list'>
+    <div class="media">
+        <a class="media-left" href="#">
+                            <img class="img-circle" src="" style="max-width: 70px" align="Profile Name">
+                        </a>
+        <div class="media-body">
+            <b>{{ question.title  }}</b>
+            {# <p class="m-b-0"><b>{{ question.author.get_full_name }}</b></p> #}
+            <div class="m-b-1 text-muted">
+                <small><a class="strong" href="">@{{question.author }}</a> -{{ question.created_time }}</small>
+            </div>
+            <hr>
+            <div class="user_content">
+                <span class="content " id="posts" name="posts">{{ question.content|urlize }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="text-xs-right">
+        <a href="#" class="card-link">Share</a>
+        <a href="#" class="card-link">Like</a>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    var siteURL = '127.0.0.1:8000/tags/',
+        entries = $('.user_content span');
+
+    if (entries.length > 0) {
+
+        entries.each(function() {
+            var hashtagRegex = /(^|\s)#([\w\d-]+)/g
+            var usernameRegex = /(^|\s)@([\w\d-]+)/g
+            var currentHtml = $(this).html()
+            var newText;
+            newText = currentHtml.replace(hashtagRegex, "$1<a  href='hashtag/$2'> #$2</a>")
+            newText = newText.replace(usernameRegex, "$1 @<a  href='/user/$2/' title='User $2'>$2</a>")
+
+            $(this).html(newText);
+
+        });
+
+    }
+
+});
+</script>
+
+{% empty %}
+<div class="alert alert-warning">
+    <i class="fa fa-info-circle fa-lg m-r-5 pull-left m-t-2"></i> Hey Eosian, it looks Deserted O'er Here. Make it lively.
+    <a href="#ask-dialog" class="btn btn-outline-success btn-xs pull-right" data-toggle="modal">Shoot!</a>
+</div>
+{% endfor %}

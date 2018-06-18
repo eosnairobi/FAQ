@@ -1,0 +1,20 @@
+<table class="table table-inverse">
+    <thead>
+        <tr>
+            <th>BP/C</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producer in producers %}
+        <tr>
+            <td>{{ producer.name }}</td>
+            <td><span class="text-success">{{ producer.vote_count }}<i class="fa fa-arrow-up"></i></span></td>
+        </tr>
+        {% empty %}
+            
+        {% endfor %}
+    </tbody>
+    <div>
+    </div>
+</table>
