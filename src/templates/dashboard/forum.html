@@ -81,31 +81,34 @@
                         <div id="post-list">
                             {% include 'dashboard/list_ajax.html' %}
                         </div>
-                     <div class="section-container">
-                        <!-- begin pagination -->
-                        <div class="pagination-container text-center pagination">
-                            <ul class="pagination m-t-0 m-b-0">
-                                <span class="step-links">
-                                {% if questions.has_previous %}
-                                    <a class="btn btn-xs btn-outline-success" href="?page=1">&laquo; first</a>
-                                    <a class="btn btn-xs btn-outline-success" href="?page={{ questions.previous_page_number }}">previous</a>
-                                {% endif %}
-
-                                <span class="current">
-                                    Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
-                                </span>
-
-                                {% if questions.has_next %}
-                                    <a class="btn btn-xs btn-outline-success" href="?page={{ questions.next_page_number }}">next</a>
-                                    <a class="btn btn-xs btn-outline-success" href="?page={{ questions.paginator.num_pages }}">last &raquo;</a>
-                                {% endif %}
-                            </span>
-                            </ul>
+                        <div class="section-container">
+                            <!-- begin pagination -->
+                            <div class="pagination-container text-center pagination">
+                                <ul class="pagination m-t-0 m-b-0">
+                                    {% with questions as items %} {% if items.has_other_pages %}
+                                    <nav aria-label="Questions">
+                                        <ul class="pagination justify-content-left">
+                                            {% if items.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a></li>
+                                            {% else %}
+                                            <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo;</span></a></li>
+                                            {% endif %} {% for i in items.paginator.page_range %} {% if items.number == i %}
+                                            <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+                                            {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                            {% endif %} {% endfor %} {% if items.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;</a></li>
+                                            {% else %}
+                                            <li class="page-item disabled"><a class="page-link" href="#"><span>&raquo;</span></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
+                                    {% endif %} {% endwith %}
+                                </ul>
+                            </div>
+                            <!-- end pagination -->
                         </div>
-                        <!-- end pagination -->
                     </div>
-                    </div>
-
                     <div class="col-lg-3 col-sm-12 hidden-xs-down">
                         <div class="card">
                             <div class="card-block">
