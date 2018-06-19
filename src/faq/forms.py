@@ -12,7 +12,5 @@ class QuestionModelForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ('title', 'content',)
-        # widgets = {'respondent': forms.Select(attrs={'class': 'selectpicker',
-        #                                              'data-live-search': 'true',
-        #                                              'title': 'Select St'}),
-        #            }
+        widgets = {'content': forms.Textarea(attrs={'class': 'counted'}),
+                   }

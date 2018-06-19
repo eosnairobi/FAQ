@@ -2,9 +2,7 @@
 
 <script src="{% static 'dashboard/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="ask-dialog" aria-hidden="true">
-{# <div class="modal fade" id="ask-dialog"> #}
     <div class="modal-dialog modal-lg">
-    {# <div class="modal-dialog"> #}
         <form id='question_form'>
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,6 +12,7 @@
                 <div class="modal-body">
                     <div id="err"></div>
                     {{ question_form | crispy }}
+                    <span class="counter" id="counter">140 characters remaining</span>
                 </div>
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
@@ -25,32 +24,65 @@
 </div>
 <!-- /.modal -->
 {% for question in questions %}
-<div class="card card-block" id='post-list'>
-    <div class="media">
-        <a class="media-left" href="#">
-                            <img class="img-circle" src="" style="max-width: 70px" align="Profile Name">
-                        </a>
-        <div class="media-body">
-            <b>{{ question.title  }}</b> 
-            <div class="m-b-1 text-muted">
-                <small><a class="strong" href="">@{{question.author }}</a> -{{ question.created_time }}</small>
-            </div>
-            <hr>
-            <div class="user_content">
-                <span class="content " id="posts" name="posts">{{ question.content|urlize }}</span>
-            </div>
+<!-- begin panel -->
+<div class="panel panel-inverse" data-sortable-id="index-5">
+    <div class="panel-heading">
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+        </div>
+        <h4 class="panel-title">{{ question.title }}</h4>
+    </div>
+    <div class="panel-body">
+        <div data-scrollbar="true">
+            <ul class="media-list media-list-with-divider media-messaging">
+                <li class="media media-sm">
+                    <a href="javascript:;" class="pull-left">
+                        <img src="{% static 'dashboard/assets/img/user/user-5.jpg' %}" alt="" class="media-object rounded-corner" />
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">{{ question.author }}</h5>
+                        <p class="user_content"><small>{{ question.content }}</small></p>
+                    </div>
+                </li>
+                    {% for answer in question.answers.all %}
+                 <li class="media media-sm">
+                    <a href="javascript:;" class="pull-left">
+                        <img src="{% static 'dashboard/assets/img/user/user-5.jpg' %}" alt="" class="media-object rounded-corner" />
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">{{ answer.author }}</h5>
+                        <p class="user_content"><small>{{ answer.content }}</small></p>
+                    </div>
+                </li>
+                {% empty %}
+                
+                    <div class="alert alert-warning">
+                        <i class="fa fa-info-circle fa-lg"></i> No Reactions found. No, not yet.
+                    </div>
+               
+                {% endfor %}
+                 
+            </ul>
         </div>
     </div>
-    <div class="text-xs-right">
-        <a href="#" class="card-link">Share</a>
-        <a href="#" class="card-link">Like</a>
+    <div class="panel-footer">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control bg-silver" placeholder="Enter message" />
+                <span class="input-group-append">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-pencil-alt"></i></button>
+                </span>
+            </div>
+        </form>
     </div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#ask-dialog').modal('handleUpdate');
     var siteURL = '127.0.0.1:8000/tags/',
-        entries = $('.user_content span');
+        entries = $('.user_content small');
 
     if (entries.length > 0) {
 

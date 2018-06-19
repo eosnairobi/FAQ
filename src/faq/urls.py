@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from .views import dashboard, forum
-from .api.views import TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet
+from .api.views import TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet, create_faq
 
 from rest_framework.routers import DefaultRouter
 
@@ -25,7 +25,8 @@ router.register(r'question', QuestionModelViewSet, base_name='question')
 
 urlpatterns = [
     path('home/', dashboard),
-    path('forum/', forum),
+    path('forum/', forum, name='forum'),
+    path('new-faq/', create_faq),
 ]
 
 

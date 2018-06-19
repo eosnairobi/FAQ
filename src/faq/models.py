@@ -50,7 +50,7 @@ class Tag(models.Model):
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
     content = models.TextField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='answered_by', on_delete=models.CASCADE)
     upvoted = models.BooleanField(default=False)
