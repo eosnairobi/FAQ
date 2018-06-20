@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Third Party Apps
     'ckeditor',
+    'corsheaders',
     'crispy_forms',
     'django_filters',
     'rest_framework',
@@ -49,9 +50,11 @@ INSTALLED_APPS = [
     # Our Apps
     'accounts',
     'faq',
+    'map',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,3 +140,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+CORS_ORIGIN_ALLOW_ALL = True

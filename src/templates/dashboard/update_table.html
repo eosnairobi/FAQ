@@ -1,20 +1,39 @@
-<table class="table table-inverse">
-    <thead>
-        <tr>
-            <th>BP/C</th>
-            <th>Votes</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for producer in producers %}
-        <tr>
-            <td>{{ producer.name }}</td>
-            <td><span class="text-success">{{ producer.vote_count }}<i class="fa fa-arrow-up"></i></span></td>
-        </tr>
-        {% empty %}
-            
-        {% endfor %}
+<table class="table  table-inverse">
+    <tbody id="votess">
     </tbody>
     <div>
     </div>
 </table>
+<script type="text/javascript">
+setInterval(function() {
+    $.ajax({
+        method: "POST",
+        url: "http://mainnet.eoscanada.com/v1/chain/get_producers",
+        dataType: "json",
+        // contentType:"application/json",
+        data: JSON.stringify({ 'json': true, 'limit': 300 }),
+        success: function(data, textStatus, xhr) {
+            // console.log(data, xhr.status, 'success');
+            // console.log(data.rows[0].owner)
+            $("#votess").empty();
+            $.each(data.rows, function(index, element) {
+                console.log(element)
+                $('#votess').append(
+                    $('<tr><td><strong>' + element.owner +
+                        '</strong></td><td class="text-success"><strong>' + parseFloat(Math.round(element.total_votes * 100) / 100).toFixed(4) +
+                        '</strong></td></tr>'
+                    ));
+            });
+        },
+        error: function(data, textStatus, xhr) {
+            console.log(xhr.status, 'error encountered here');
+            $("#err").html("<div class='alert alert-danger fade show'><span class='close' data-dismiss='alert'>×</span>" +
+                "<strong>Error!</strong> Your Question Was NOT submitted Successfully</div>");
+        },
+        complete: function(xhr, textStatus) {
+            console.log(xhr.status, 'finished');
+
+        }
+    })
+}, 2000);
+</script>
