@@ -79,7 +79,7 @@ import json
 """
 
 
-@
+# @
 def obtain_bp_json():
     """ 
         Task to run every midnight, to update the state of the BP Locations
