@@ -39,3 +39,5 @@ class BlockProducerObject(object):
         self.owner = owner
         self.producer_key = producer_key
         self.url = url
+
+
