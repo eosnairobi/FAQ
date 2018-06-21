@@ -17,9 +17,12 @@ setInterval(function() {
             // console.log(data.rows[0].owner)
             $("#votess").empty();
             $.each(data.rows, function(index, element) {
-                console.log(element)
+                new_index = parseInt(index, 10);
+                new_index += 1;
                 $('#votess').append(
-                    $('<tr><td><strong>' + element.owner +
+                    $('<tr>' +
+                        '<td>' + new_index + '</td>' +
+                        '<td><strong>' + element.owner +
                         '</strong></td><td class="text-success"><strong>' + parseFloat(Math.round(element.total_votes * 100) / 100).toFixed(4) +
                         '</strong></td></tr>'
                     ));

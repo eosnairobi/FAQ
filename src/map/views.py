@@ -41,3 +41,5 @@ class BlockProducerObject(object):
         self.url = url
 
 
+def view_map(request):
+    return render(request, 'test_map.html')

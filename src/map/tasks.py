@@ -109,8 +109,40 @@ def process_bp_json(bp, data):
     org_details = data.get('org')
     if org_details:
         location = org_details.get('location')
+        display_name = org_details.get('candidate_name')
+        if display_name:
+            bp.display_name = display_name
+
         if location:
             latitude = location.get('latitude')
             longitude = location.get('longitude')
             bp.latitude, bp.longitude = latitude, longitude
-            bp.save()
+        bp.save()
+
+
+def get_bp_coords():
+    bps = BlockProducer.objects.all()
+    for bp in bps:
+        pass
+
+
+"""                    
+                         
+        {
+                         latLng: [41.9, 12.45],
+                         name: "Vatican City"
+                     }
+    
+         if bp.latitude and bp.longitude:
+             if bp.display_name:
+                 name = bp.display_name
+             else:
+                 name = bp.account_name
+             data.append({"latLng":[str(bp.latitude), str(bp.longitude)],"name":name})
+             
+    with open('longitudes.json', 'w') as file:
+    ...:     file.write(json.dumps(data))
+    ...:      
+         
+
+"""

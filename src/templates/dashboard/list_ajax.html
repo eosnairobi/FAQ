@@ -68,11 +68,11 @@
         </div>
     </div>
     <div class="panel-footer">
-        <form>
+        <form action="" method="POST" class="reactions_form">
             <div class="input-group">
-                <input type="text" class="form-control bg-silver" placeholder="Enter message" />
+                <input type="text" class="form-control bg-silver" placeholder="React" />
                 <span class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fa fa-pencil-alt"></i></button>
+                    <button class="btn btn-primary submission" type="submit" ><i class="fa fa-pencil-alt"></i></button>
                 </span>
             </div>
         </form>
@@ -108,3 +108,59 @@ $(document).ready(function() {
     <a href="#ask-dialog" class="btn btn-outline-success btn-xs pull-right" data-toggle="modal">Shoot!</a>
 </div>
 {% endfor %}
+
+
+<script>
+    $(document).ready(function() {
+        var $myForm = $('.reactions_form')
+        $myForm.submit(function(event) {
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            console.log($formData)
+            // var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+            $.ajax({
+                method: "POST",
+                url: "/new-faq/",
+                data: $formData,
+                success: function(data, textStatus, xhr) {
+                    console.log(data, xhr.status, 'success');
+                    $myForm[0].reset(); // reset form data
+                    $("#ask-dialog").modal("hide");
+                    $("#results").html("<div class='alert alert-success fade show'><span class='close' data-dismiss='alert'>×</span>" +
+                        "<strong>Success!</strong> Your Question Was submitted Successfully</div>");
+                },
+                error: function(data, textStatus, xhr) {
+                    console.log(xhr.status, 'error encountered here');
+                    $("#err").html("<div class='alert alert-danger fade show'><span class='close' data-dismiss='alert'>×</span>" +
+                        "<strong>Error!</strong> Your Question Was NOT submitted Successfully</div>");
+                },
+                complete: function(xhr, textStatus) {
+                    console.log(xhr.status, 'finished');
+
+                }
+            })
+        })
+
+        function scroll() {
+            console.log('scrolling to top');
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function handleFormSuccess(data, textStatus, jqXHR) {
+            console.log(data)
+            console.log(textStatus)
+            console.log(jqXHR)
+            $myForm.reset(); // reset form data
+        }
+
+        function handleFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
+    });
+    </script>

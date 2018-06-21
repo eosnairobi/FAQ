@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import query_bps
+from .views import query_bps, view_map
 
 
 urlpatterns = (
     path('query-bps/', query_bps, name='query_bps'),
+    path('view/', view_map, name='view_map'),
 )
