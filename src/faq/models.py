@@ -12,7 +12,7 @@ class Question(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asked_by', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250, unique_for_date='created_time', blank=True)
     title = models.CharField(max_length=200)
-    content = models.TextField(max_length=140)
+    content = models.TextField(max_length=14000)
     respondent = models.ManyToManyField(settings.AUTH_USER_MODEL)
     created_time = models.DateTimeField(auto_now_add=True)
     edited = models.DateTimeField(auto_now=True)
@@ -28,7 +28,7 @@ class Question(models.Model):
         ordering = ('-created_time',)
 
     def __str__(self):
-        return self.content
+        return self.title
 
     def get_total_upvotes(self):
         return self.question_upvote.all().count()

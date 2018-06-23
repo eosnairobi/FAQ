@@ -1,13 +1,74 @@
 from rest_framework import viewsets
+from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 from ..models import Question, Tag, QuestionUpvote, Answer, AnswerUpvote
-from .serializers import QuestionSerializer, TagSerializer, QuestionUpvoteSerializer, AnswerUpvoteSerializer
+from .serializers import QuestionSerializer, TagSerializer, QuestionUpvoteSerializer, AnswerUpvoteSerializer, AnswerSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from ..models import Question
 
 # Just the skeleton for now. More Work is coming
+
+
+"""
+    HTTP_100_CONTINUE
+    HTTP_101_SWITCHING_PROTOCOLS
+
+    HTTP_200_OK
+    HTTP_201_CREATED
+    HTTP_202_ACCEPTED
+    HTTP_203_NON_AUTHORITATIVE_INFORMATION
+    HTTP_204_NO_CONTENT
+    HTTP_205_RESET_CONTENT
+    HTTP_206_PARTIAL_CONTENT
+    HTTP_207_MULTI_STATUS
+    
+    HTTP_300_MULTIPLE_CHOICES
+    HTTP_301_MOVED_PERMANENTLY
+    HTTP_302_FOUND
+    HTTP_303_SEE_OTHER
+    HTTP_304_NOT_MODIFIED
+    HTTP_305_USE_PROXY
+    HTTP_306_RESERVED
+    HTTP_307_TEMPORARY_REDIRECT
+    
+    HTTP_400_BAD_REQUEST
+    HTTP_401_UNAUTHORIZED
+    HTTP_402_PAYMENT_REQUIRED
+    HTTP_403_FORBIDDEN
+    HTTP_404_NOT_FOUND
+    HTTP_405_METHOD_NOT_ALLOWED
+    HTTP_406_NOT_ACCEPTABLE
+    HTTP_407_PROXY_AUTHENTICATION_REQUIRED
+    HTTP_408_REQUEST_TIMEOUT
+    HTTP_409_CONFLICT
+    HTTP_410_GONE
+    HTTP_411_LENGTH_REQUIRED
+    HTTP_412_PRECONDITION_FAILED
+    HTTP_413_REQUEST_ENTITY_TOO_LARGE
+    HTTP_414_REQUEST_URI_TOO_LONG
+    HTTP_415_UNSUPPORTED_MEDIA_TYPE
+    HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE
+    HTTP_417_EXPECTATION_FAILED
+    HTTP_422_UNPROCESSABLE_ENTITY
+    HTTP_423_LOCKED
+    HTTP_424_FAILED_DEPENDENCY
+    HTTP_428_PRECONDITION_REQUIRED
+    HTTP_429_TOO_MANY_REQUESTS
+    HTTP_431_REQUEST_HEADER_FIELDS_TOO_LARGE
+    HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS
+    
+    HTTP_500_INTERNAL_SERVER_ERROR
+    HTTP_501_NOT_IMPLEMENTED
+    HTTP_502_BAD_GATEWAY
+    HTTP_503_SERVICE_UNAVAILABLE
+    HTTP_504_GATEWAY_TIMEOUT
+    HTTP_505_HTTP_VERSION_NOT_SUPPORTED
+    HTTP_507_INSUFFICIENT_STORAGE
+    HTTP_511_NETWORK_AUTHENTICATION_REQUIRED
+
+"""
 
 
 class QuestionModelViewSet(viewsets.ModelViewSet):
@@ -16,6 +77,11 @@ class QuestionModelViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     search_fields = ()
     filter_fields = ()
+
+
+class AnswerModelViewsSet(viewsets.ModelViewSet):
+    serializer_class = AnswerSerializer
+    queryset = Answer.objects.all()
 
 
 class TagModelViewSet(viewsets.ModelViewSet):
@@ -45,25 +111,43 @@ class AnswerUpvoteViewSet(viewsets.ModelViewSet):
 @api_view(['POST', ])
 def create_faq(request):
     data = request.data
-    print(data)
+    # print(data)
     author = request.user
     title = data.get('title')
     content = data.get('content')
     try:
         q = Question.objects.create(author=author, content=content, title=title)
         response = {'success': 'Question Created Successfully'}
-    except:
+        stats = status.HTTP_201_CREATED
+    except Exception as e:
+        print(str(e))
         response = {'error': 'Question not created Successfully'}
-    return Response(response)
+        stats = status.HTTP_400_BAD_REQUEST
+    return Response(response, status=stats)
 
 
-# class Question(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-#     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asked_by', on_delete=models.CASCADE)
-#     slug = models.SlugField(max_length=250, unique_for_date='created_time', blank=True)
-#     title = models.CharField(max_length=200)
-#     content = models.TextField(max_length=140)
-#     respondent = models.ManyToManyField(settings.AUTH_USER_MODEL)
-#     created_time = models.DateTimeField(auto_now_add=True)
-#     edited = models.DateTimeField(auto_now=True)
-#     liked = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='liked')
+@api_view(['POST'])
+def save_reaction(request):
+    data = request.data
+    response_data = []
+    try:
+        question = Question.objects.get(id=data.get('question_id'))
+        content = data.get('reaction')
+    except Exception as e:
+        response = {'error': 'Looks like you are answering a question that does not exist'}
+        stat = status.HTTP_404_NOT_FOUND
+    if question and content:
+        try:
+            a = Answer.objects.create(author=request.user, question=question, content=content)
+            answer = AnswerSerializer(a)
+            response_data.append(a.author)
+            response_data.append(a.content)
+            serialized = answer.data
+            response = {'success': 'Hey Eosian, your reaction was noted, with thanks!'}
+            stat = status.HTTP_201_CREATED
+        except Exception as e:
+            print(str(e))
+            response = {'error': 'We are just finding it difficult to save your Reaction'}
+            stat = status.HTTP_400_BAD_REQUEST
+
+    return Response(response, stat)

@@ -1,0 +1,69 @@
+EOS Tribe 
+1.Ok thanks. In the mean time do I need to move my tokens anywhere. I registered them before the snapshot but they are still visible in MEW
+- Yo do not need to move your tokens, when they are airdropped they will be on the EOS chain. Whatever is in MEW are still ERC-20(ethereum)
+Reply: Ok thanks for the info and clearing things up. Will continue to follow chat for upcoming updates
+2. tribe is at .49%, I understand a BP has to have .aprox .5% of votes to  be compensated. is this correct?
+- This is correct
+3. EOS is a decentralized blockchain platform with its strength being a geographically dispersed and encompassing community that in theory drives how things are governed.  The fact that whales blatantly dominate and skew the BPs being selected is, should a Ricardian Contract terminology be applied, not what is intended nor desired.
+In addressing what I'm proposing below, please open eosviz.com which has a nice treemap visualization that shows how things are currently being skewed by whales.
+
+In a nutshell, in order to make the voting more community driven:
+
+1. Require that all VP voters place a minimum of X (eg, 15) votes.  Currently, it is my understanding that one can vote anywhere between 1 and 30 votes for BPs.
+
+How does this help?  If you look at the visualization it's quite obvious how a few whales only voted for one or two BPs; the effect being that it totally skews the voting results.
+
+2. Require that a maximum of Y (eg, 300) EOS tokens can at any given time be staked for voting.  Currently, a whale can come in and vote their whole EOS token holdings which can be in the millions; this can be easily determined from the visualization.
+
+How does this help?  Placing a cap on the number of tokens limits the impact of any one whale.
+
+Now, as to how to determine what X and Y should be set to, that can be determined using arbitration and statistics (not my forte)... ultimately, the community should determine this.
+
+
+COMMUNITY 
+I have to tell you, in all honesty, the way the vote is right now is 100% the intended and “fair” method.  The eos system is built completely around the “stake” which says the more stake you have in the system the more say you have.   
+
+If you had 1,000,000 tokens and 30 other people had 1 token, would it really be fair for them to vote for who produces the blocks that you have 99.99% of?   This is part of the protection of property laid out by Dan’s vision and has been known and adopted by all the current BP’s.  Anybody wanting to change it now for their own gain would be doing the complete opposite of what eos stands for.  
+
+We can get the tribe up the chain by exposing the good work being done here and continuing to support the eos platform just as Eugene mentioned.  
+
+Lastly, keep in mind there are going to be MANY opportunities for income here, not just block rewards.
+Reply
+Thanks Jonny for your input, your points are helpful and do make sense.  Yes, it stands to reason that if you would have more invested in EOS then you should have more say in who gets to be BP.  And I do realize that it's likely that any voting system adopted will not satisfy everybody.  However, EOS Tribe at 47+ is absolutely ridiculous and in no way representative of what they have contributed to birthing the platform.  Still, at a minimum require all to vote for at least 15 BPs so that any one whale voter doesn't totally skew the tally towards one obscure BP.
+
+Q:Hey can someone tell me if its safe to send eos from greymass to someone else wallet ??
+A: Greymass is currently the safest wallet that has been vetted for security and endorsed by Dan himself.
+
+Q: Thanks.. I have all my tokens on trezor in MEW .. they are registered but I really don’t know what to do at this point? Especially with having to use your private key.. I’m pretty new to crypto.. so besides being technically challenged I’m pretty nervous.. as side note..the more I learned about EOS the more I luved it and have been IN since after the first of the year.. Not sure how to maneuver around on the platform .. .. any suggestions?
+A: Hey we can help. 
+Basically at this point the tokens in your MEW are frozen and are worthless. Basically, they were used at the snapshot to see how many token you had and to transfer them to the new EOS tokens. Your EOS are fine and are waiting for you to import your private keys into a EOS supported Wallet. Once you import your private keys into a wallet your token will be there waiting for you and they will be automatically staked(meaning you cannot withdraw or transfer until you un-stake). It was put into the system so that EOS holder would vote from Block Producer and to also unlock the chain. You have to stake your tokens to Vote for BPs. This matters because BPs secure the network.
+ Steve..here is a tutorial (From our team) on how to get to your tokens and vote: https://steemit.com/eos/@eostribe/simple-voting-for-block-producers-using-simpleos. 
+19.06.18 20:05]
+
+@admin, if I continue to vote, do I have to wait 3 days each time I do to start to unstake my EOS??
+Community member: [19.06.18 20:06]
+U can unstake anytime but it takes 3 days from that point to come to ur balance.
+Team member:
+Well you have to stake to vote, I think your question is if you unstake does that take 72 hrs, and the answer is yes... also important to note that by unstaking your tokens your votes go away as well........... and to add to that, your voting power has a 1/2 life of 1 year...... so your vote will be worth 1/2 its weight after a year, in this case you may want to unstake, wait the 72hrs and stake again to get full voting power
+
+
+EOS CAFE DAC
+-are there any geo location maps of eos token holders?
+ [17.06.18 04:16]
+Oooh great question
+|, [17.06.18 04:17]
+We should put out a bounty to create one.
+ [17.06.18 04:17]
+Google maps?
+
+[17.06.18 10:54]
+ I'm unstaking to move my tokens to a new address. I've created a few new accounts, but most of them are under the same keys. I want to give them each new keys so that I can give away some of these accounts. Does anyone know a tool for changing the keys of a 12 character address?
+ [17.06.18 10:54]
+generos toolkit should allow changing keys
+Reply: I think on that I can only change for all addresses
+Answer: actually there is no tools that changes key, you are right
+
+Q: Is it possible (or known) whether EOS Mainnet account names have been changed for some reason since snapshot? This seems to be the case. Do apologise if this is not the proper forum, but I've been asking around and no one else seems to have an answer. Secondly, are tokens automatically staked?
+Admin. will EOS Cafe DAC be considered a Dapp?
+Hello everyone, I thought you might all like to see a video I put 100+ hours of work into, going into a deep dive into "What is a DAC?"  https://www.youtube.com/watch?v=ahoFGzxE_NY
+

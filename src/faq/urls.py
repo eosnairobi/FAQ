@@ -14,19 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import dashboard, forum
-from .api.views import TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet, create_faq
+from .views import dashboard, forum, forum_list
+from .api.views import TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet, create_faq, save_reaction, AnswerModelViewsSet
 
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 
 router.register(r'question', QuestionModelViewSet, base_name='question')
+router.register(r'answer', AnswerModelViewsSet, base_name='answers')
 
 urlpatterns = [
     path('home/', dashboard),
     path('forum/', forum, name='forum'),
+    path('forum-list/', forum_list, name='forum-list'),
     path('new-faq/', create_faq),
+    path('save-response/', save_reaction, name='save_reaction'),
 ]
 
 

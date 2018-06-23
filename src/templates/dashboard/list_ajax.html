@@ -35,9 +35,9 @@
         <h4 class="panel-title">{{ question.title }}</h4>
     </div>
     <div class="panel-body">
-        <div data-scrollbar="true">
-            <ul class="media-list media-list-with-divider media-messaging">
-                <li class="media media-sm">
+        <div>
+            
+                <li class="media media-sm fixed">
                     <a href="javascript:;" class="pull-left">
                         <img src="{% static 'dashboard/assets/img/user/user-5.jpg' %}" alt="" class="media-object rounded-corner" />
                     </a>
@@ -46,31 +46,39 @@
                         <p class="user_content"><small>{{ question.content }}</small></p>
                     </div>
                 </li>
+                
+                <div class="alert text-center show"><strong> Reactions</strong></div>
+                <div data-scrollbar="true">
+                    <ul class="media-list media-list-with-divider media-messaging">
                     {% for answer in question.answers.all %}
-                 <li class="media media-sm">
+                 <li class="media media-xs answers_here">
                     <a href="javascript:;" class="pull-left">
                         <img src="{% static 'dashboard/assets/img/user/user-5.jpg' %}" alt="" class="media-object rounded-corner" />
                     </a>
                     <div class="media-body">
-                        <h5 class="media-heading">{{ answer.author }}</h5>
-                        <p class="user_content"><small>{{ answer.content }}</small></p>
+                        <h6 class="media-heading">{{ answer.author }}</h6>
+                        <p class="user_content"><small>{{ answer.content | urlize |linebreaks}}</small></p>
                     </div> 
                 </li>
                 {% empty %}
                 
-                    <div class="alert alert-warning">
-                        <i class="fa fa-info-circle fa-lg"></i> No Reactions found. No, not yet.
+                    <div class="alert alert-warning small alert-sm">
+                        <i class="fa fa-info-circle fa-lg">
+                            
+                        </i><small> No Reactions found. No, not yet.</small>
                     </div>
                
                 {% endfor %}
-                 
-            </ul>
+                </ul>
+                </div>  
+            
         </div>
     </div>
     <div class="panel-footer">
-        <form action="" method="POST" class="reactions_form">
+        <form action="" method="POST" class="reactions_form" id="reactions_form">
             <div class="input-group">
-                <input type="text" class="form-control bg-silver" placeholder="React" />
+                <input type="text" name="question_id" value="{{ question.id }}" hidden="true">
+                <input type="text" class="form-control bg-silver" name="reaction" placeholder="React" />
                 <span class="input-group-append">
                     <button class="btn btn-primary submission" type="submit" ><i class="fa fa-pencil-alt"></i></button>
                 </span>
@@ -91,7 +99,7 @@ $(document).ready(function() {
             var usernameRegex = /(^|\s)@([\w\d-]+)/g
             var currentHtml = $(this).html()
             var newText;
-            newText = currentHtml.replace(hashtagRegex, "$1<a  href='hashtag/$2'> #$2</a>")
+            newText = currentHtml.replace(hashtagRegex, "$1<a  href='hashtag/$2' title='Topic $2'> #$2</a>")
             newText = newText.replace(usernameRegex, "$1 @<a  href='/user/$2/' title='User $2'>$2</a>")
 
             $(this).html(newText);
@@ -120,19 +128,19 @@ $(document).ready(function() {
             // var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
             $.ajax({
                 method: "POST",
-                url: "/new-faq/",
+                url: "{% url 'save_reaction' %}",
                 data: $formData,
                 success: function(data, textStatus, xhr) {
                     console.log(data, xhr.status, 'success');
                     $myForm[0].reset(); // reset form data
                     $("#ask-dialog").modal("hide");
                     $("#results").html("<div class='alert alert-success fade show'><span class='close' data-dismiss='alert'>×</span>" +
-                        "<strong>Success!</strong> Your Question Was submitted Successfully</div>");
+                        "<strong>Success!</strong> Your Reaction Was added Successfully</div>");
                 },
                 error: function(data, textStatus, xhr) {
                     console.log(xhr.status, 'error encountered here');
-                    $("#err").html("<div class='alert alert-danger fade show'><span class='close' data-dismiss='alert'>×</span>" +
-                        "<strong>Error!</strong> Your Question Was NOT submitted Successfully</div>");
+                    $("#results").html("<div class='alert alert-danger fade show'><span class='close' data-dismiss='alert'>×</span>" +
+                        "<strong>Error! </strong>Ummmm.. Looks like we were not able to capture your reaction</div>");
                 },
                 complete: function(xhr, textStatus) {
                     console.log(xhr.status, 'finished');
@@ -140,7 +148,6 @@ $(document).ready(function() {
                 }
             })
         })
-
         function scroll() {
             console.log('scrolling to top');
             window.scroll({

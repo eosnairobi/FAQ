@@ -17,4 +17,16 @@ def forum(request):
     if request.method == 'GET':
         question_form = QuestionModelForm()
 
-    return render(request, 'dashboard/forum.html', {'questions': questions, 'question_form': question_form})
+    return render(request, 'dashboard/forum1.html', {'questions': questions, 'question_form': question_form})
+
+
+def forum_list(request):
+    all_questions = Question.objects.all()
+    paginator = Paginator(all_questions, 5)  # Show 5 contacts per page
+
+    page = request.GET.get('page')
+    questions = paginator.get_page(page)
+    if request.method == 'GET':
+        question_form = QuestionModelForm()
+
+    return render(request, 'dashboard/list_ajax.html', {'questions': questions, 'question_form': question_form})

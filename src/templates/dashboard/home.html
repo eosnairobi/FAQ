@@ -34,6 +34,14 @@
         /*top: 10px;*/
         bottom: 23px;
     }
+    .zoom {
+        position: fixed;
+        bottom: 45px;
+        /*right: 24px;*/
+
+        height: 70px;
+        z-index: 1;
+    }
     </style>
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'assets/plugins/pace/pace.min.js' %}"></script>
@@ -77,10 +85,13 @@
                     <h4 class="m-t-0 text-danger">BPC Vote Count</h4>
                     <span id="clockbox" class="text-success"></span>
                     <!-- begin scrollbar -->
-                    <div data-scrollbar="true" class="height-md" id="hide-me3">
+                    <div data-scrollbar="true" class="height-md col-xs-12" id="hide-me3">
                         {% include 'dashboard/update_table.html' %}
                     </div>
                     <!-- end scrollbar -->
+                </div>
+                <div class="zoom">
+               <div class="alert show alert-success">Hello</div>
                 </div>
                 <div class="map-float">
                     <button class="btn btn-outline-success btn-xs btn-block" id="hider">Toggle Live Table</button>
@@ -113,6 +124,7 @@
     <script src="{% static 'dashboard/assets/js/demo/map-vector.demo.min.js' %}"></script>
     <script src="{% static 'clock.js' %}"></script>
     <script src="{% static 'dashboard/assets/js/apps.min.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <!-- ================== END BASE JS ================== -->
     <script type="text/javascript">
     $("#hider").click(function() {
