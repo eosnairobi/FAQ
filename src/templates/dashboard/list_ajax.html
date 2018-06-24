@@ -136,6 +136,11 @@ $(document).ready(function() {
                     $("#ask-dialog").modal("hide");
                     $("#results").html("<div class='alert alert-success fade show'><span class='close' data-dismiss='alert'>×</span>" +
                         "<strong>Success!</strong> Your Reaction Was added Successfully</div>");
+                    // var url = $(this).attr('href'); 
+                    // window.open(url, '_blank');
+                    var url = "{{ request.build_absolute_uri }}"
+                    console.log(url);
+                    window.location.href = "{{ request.build_absolute_uri }}"
                 },
                 error: function(data, textStatus, xhr) {
                     console.log(xhr.status, 'error encountered here');
