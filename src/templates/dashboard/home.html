@@ -24,6 +24,7 @@
     <link href="{% static 'dashboard/assets/plugins/DataTables/extensions/FixedColumns/css/fixedColumns.bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'invoice/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'invoice/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css' %}" rel="stylesheet" />
+    
     <!-- ================== END BASE CSS STYLE ================== -->
     <link href="{% static 'dashboard/assets/plugins/jquery-jvectormap/jquery-jvectormap.css' %}" rel="stylesheet" />
     <!-- ================== END PAGE LEVEL STYLE ================== -->
@@ -38,9 +39,22 @@
         position: fixed;
         bottom: 45px;
         /*right: 24px;*/
-
         height: 70px;
         z-index: 1;
+    }
+    .alerty{
+        /*opacity: 0.4;*/
+        background: rgba(28,31,37,.8);
+    background-color: rgba(28, 31, 37, 0.8);
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto auto;
+
     }
     </style>
     <!-- ================== BEGIN BASE JS ================== -->
@@ -70,19 +84,19 @@
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
                 <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Page Options</a></li>
-                <li class="breadcrumb-item active">Page with Top Menu</li>
+                <li class="breadcrumb-item"><a href="javascript:;">BPs Distribution</a></li>
+                <li class="breadcrumb-item active">Map</li>
             </ol>
             <!-- end breadcrumb -->
             <!-- begin page-header -->
-            <h1 class="page-header">Page with Top Menu <small>header small text goes here...</small></h1>
+            <h1 class="page-header">BPs Distribution <small>Map</small></h1>
             <!-- end page-header -->
             <!-- begin panel -->
             <div class="map">
                 <div id="world-map"></div>
                 <!-- begin map-float-table -->
                 <div class="map-float-table hidden-xs p-15" id="value">
-                    <h4 class="m-t-0 text-danger">BPC Vote Count</h4>
+                    <h4 class="m-t-0 text-danger">BPC Vote Count (Unweighted)</h4>
                     <span id="clockbox" class="text-success"></span>
                     <!-- begin scrollbar -->
                     <div data-scrollbar="true" class="height-md col-xs-12" id="hide-me3">
@@ -91,7 +105,11 @@
                     <!-- end scrollbar -->
                 </div>
                 <div class="zoom">
-               <div class="alert show alert-success">Hello</div>
+               <div class="alerty text-success">
+                    This data is based on the Latitudes and Longitudes <br>
+                    obtained from the BPs json files. Some Nodes <br>
+                    are not showing due to lack of the<code>bp.json file</code>
+               </div>
                 </div>
                 <div class="map-float">
                     <button class="btn btn-outline-success btn-xs btn-block" id="hider">Toggle Live Table</button>
@@ -123,6 +141,7 @@
     <script src="{% static 'dashboard/assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
     <script src="{% static 'dashboard/assets/js/demo/map-vector.demo.min.js' %}"></script>
     <script src="{% static 'clock.js' %}"></script>
+  
     <script src="{% static 'dashboard/assets/js/apps.min.js' %}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <!-- ================== END BASE JS ================== -->
@@ -169,6 +188,7 @@
     $(document).ready(function() {
         App.init();
         MapVector.init();
+        
     });
     </script>
     <script>

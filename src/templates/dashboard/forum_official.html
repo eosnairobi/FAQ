@@ -4,28 +4,28 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
-
 <head>
     <meta charset="utf-8" />
     <title>EOSiO | Forum</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
+    
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="{% static 'forum/assets/plugins/bootstrap3/css/bootstrap.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'dashboard/assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css' %}" rel="stylesheet" />
+     <link href="{% static 'dashboard/assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/plugins/animate/animate.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/css/forum/style.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/css/forum/style-responsive.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/css/forum/theme/default.css' %}" id="theme" rel="stylesheet" />
     <link href="{% static 'dashboard/assets/plugins/flag-icon/css/flag-icon.css' %}" rel="stylesheet" />
     <!-- ================== END BASE CSS STYLE ================== -->
+    
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'forum/assets/plugins/pace/pace.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
-
 <body>
     <!-- begin #header -->
     <div id="header" class="header navbar navbar-inverse navbar-fixed-top">
@@ -65,6 +65,7 @@
         <!-- end container -->
     </div>
     <!-- end #header -->
+    
     <!-- begin search-banner -->
     <div class="search-banner has-bg">
         <!-- begin bg-cover -->
@@ -84,7 +85,7 @@
             <h5>Browse by Popular Categories</h5>
             <ul class="popular-tags">
                 {% for category in categories %}
-                <li><a href="#"><i class="fa fa-circle text-danger"></i> {{ category.name }}</a></li>
+                <li><a href="#"><i class="fa fa-circle text-danger"></i> CSS</a></li>
                 {% empty %}
                 <div class="alert alert-warning">No Categories Yet.</div>
                 {% endfor %}
@@ -93,16 +94,18 @@
         <!-- end container -->
     </div>
     <!-- end search-banner -->
+    
     <!-- begin content -->
-    <div class="content">
+    <div class="content" >
         <!-- begin container -->
         <div class="container" data-scrollbar="true">
+
             <!-- begin panel-forum -->
+            {# {% for category in categories %} #}
             <div class="panel panel-forum">
                 <!-- begin panel-heading -->
-                {% for category in categories %}
-                <div class="panel-heading panel-inverse">
-                    <h4 class="panel-title">ALL CATEGORIES</h4>
+                <div class="panel-heading">
+                    <h4 class="panel-title">Official Management District</h4>
                 </div>
                 <!-- end panel-heading -->
                 <!-- begin forum-list -->
@@ -110,38 +113,64 @@
                     <li>
                         <!-- begin media -->
                         <div class="media">
-                            <img src="{% static 'forum/assets/img/icon/icon-chat-bubble.png' %}" style="width:35px; height:35px;" alt="" />
+                            <img src="../assets/img/icon/icon-gold-note.png" alt="" />
                         </div>
                         <!-- end media -->
                         <!-- begin info-container -->
                         <div class="info-container">
                             <div class="info">
-                                <h4 class="title"><a href="category_list.html">{{ category.name }}</a></h4>
+                                <h4 class="title"><a href="category_list.html">Announcement</a></h4>
                                 <p class="desc">
-                                    {{ category.description }}
+                                    The latest official news, events , announcements, updates and other information released .
                                 </p>
                             </div>
                             <div class="total-count">
                                 <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
                             </div>
                             <div class="latest-post">
-                                <h5 class="title"><a href="category_list.html">Current # of Posts / Questions</a></h5>
-                                <p class="time"><small>Since {{ category.created }}</small></p>
+                                <h4 class="title"><a href="category_list.html">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
+                                <p class="time">Yesterday 10:49pm <a href="category_list.html" class="user">admin</a></p>
+                            </div>
+                        </div>
+                        <!-- end info-container -->
+                    </li>
+                    <li>
+                        <!-- begin media -->
+                        <div class="media">
+                            <img src="../assets/img/icon/icon-cone.png" alt="" />
+                        </div>
+                        <!-- end media -->
+                        <!-- begin info-container -->
+                        <div class="info-container">
+                            <div class="info">
+                                <h4 class="title"><a href="category_list.html">Bug / Suggestion</a></h4>
+                                <p class="desc">
+                                    Template development proposals, content-related complaints and bug submission.
+                                </p>
+                            </div>
+                            <div class="total-count">
+                                <span class="total-post">1,293</span> <span class="divider">/</span> <span class="total-comment">9,291</span>
+                            </div>
+                            <div class="latest-post">
+                                <h4 class="title"><a href="category_list.html">Migrate from jQuery 1.8.x to jQuery 2.0.x</a></h4>
+                                <p class="time">Yesterday 10:49pm <a href="category_list.html" class="user">admin</a></p>
                             </div>
                         </div>
                         <!-- end info-container -->
                     </li>
                 </ul>
                 <!-- end forum-list -->
-                {% endfor %}
             </div>
+            {# {% endfor %} #}
             <!-- end panel-forum -->
             <!-- begin panel-forum -->
+           
+            </div>
+            <!-- end panel-forum -->
         </div>
-        <!-- end panel-forum -->
-    </div>
-    <!-- end container -->
+        <!-- end container -->
     <!-- end content -->
+    
     <!-- begin #footer -->
     <div id="footer" class="footer">
         <!-- begin container -->
@@ -154,10 +183,12 @@
                     <div class="section-container">
                         <h4>About EOS Nairobi</h4>
                         <p>
-                            <a href="http://www.eosnairobi.io"><strong>We</strong></a> are a Block Producer Candidate, from Nairobi, <span class="flag-icon flag-icon-ke width-full m-r-10 m-t-0 m-b-3" title="Vote For @eosnairobike" id="ke"></span> Our Vision is to enhance <a href="https://eos.io/"><strong>#EOS </strong></a> + Blockchain in
-                            <img src="{% static 'forum/assets/img/africa.png'%}" style="width:30px; height:30px;">.
-                            <p class="text-success"><strong>&middot; Vote &middot; for &middot; eosnairobike &middot;</strong></p>
+                           <a href="http://www.eosnairobi.io">We</a> are a Block Producer Candidate, from Nairobi, <span class="flag-icon flag-icon-ke width-full m-r-10 m-t-0 m-b-3" title="Vote For @eosnairobike" id="ke"></span>
+                           Our Vision is to enhance <a href="https://eos.io/">#EOS </a> + Blockchain in 
+                           <img src="{% static 'forum/assets/img/africa.png'%}" style="width:30px; height:30px;">.
+                        
                         </p>
+                        
                     </div>
                     <!-- end section-container -->
                 </div>
@@ -169,13 +200,14 @@
                         <h4>Latest News</h4>
                         <ul class="latest-post">
                             <li>
-                                <h4 class="title"><a href="#">News 1</a></h4>
+                                <h4 class="title"><a href="#">Consectetur adipiscing elit ultrices</a></h4>
                                 <p class="time">yesterday 10:42am</p>
                             </li>
                             <li>
-                                <h4 class="title"><a href="#">Piece of News 2</a></h4>
-                                <p class="time">10/04/2018</p>
+                                <h4 class="title"><a href="#">Fusce ultrices ipsum porttitor</a></h4>
+                                <p class="time">10/04/2015</p>
                             </li>
+                          
                         </ul>
                     </div>
                     <!-- end section-container -->
@@ -211,13 +243,16 @@
     <div id="footer-copyright" class="footer-copyright">
         <div class="container">
             &copy; 2018 No Rights Reserved
-            <a href="#">Contact Us</a>
+            <a href="#">Contact Us</a> 
             <a href="#">Knowledge Base</a>
+
         </div>
     </div>
     <!-- end #footer-copyright -->
     <!-- begin theme-panel -->
+    
     <!-- end theme-panel -->
+    
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'forum/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'forum/assets/plugins/bootstrap3/js/bootstrap.min.js' %}"></script>
@@ -229,11 +264,11 @@
     <script src="{% static 'forum/assets/plugins/js-cookie/js.cookie.js' %}"></script>
     <script src="{% static 'forum/assets/js/forum/apps.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
-    <script>
-    $(document).ready(function() {
-        App.init();
-    });
+    
+    <script>    
+        $(document).ready(function() {
+            App.init();
+        });
     </script>
 </body>
-
 </html>

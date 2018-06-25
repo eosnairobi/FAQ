@@ -1,6 +1,9 @@
  {% load thumbnail static crispy_forms_tags %}
 
 <script src="{% static 'dashboard/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<script src="{% static 'dashboard/assets/plugins/select2/dist/js/select2.min.js' %}"></script>
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="ask-dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <form id='question_form'>
@@ -120,6 +123,7 @@ $(document).ready(function() {
 
 <script>
     $(document).ready(function() {
+        
         var $myForm = $('.reactions_form')
         $myForm.submit(function(event) {
             event.preventDefault()

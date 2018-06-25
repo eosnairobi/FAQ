@@ -23,7 +23,7 @@ from ..models import Question
     HTTP_205_RESET_CONTENT
     HTTP_206_PARTIAL_CONTENT
     HTTP_207_MULTI_STATUS
-    
+
     HTTP_300_MULTIPLE_CHOICES
     HTTP_301_MOVED_PERMANENTLY
     HTTP_302_FOUND
@@ -32,7 +32,7 @@ from ..models import Question
     HTTP_305_USE_PROXY
     HTTP_306_RESERVED
     HTTP_307_TEMPORARY_REDIRECT
-    
+
     HTTP_400_BAD_REQUEST
     HTTP_401_UNAUTHORIZED
     HTTP_402_PAYMENT_REQUIRED
@@ -58,7 +58,7 @@ from ..models import Question
     HTTP_429_TOO_MANY_REQUESTS
     HTTP_431_REQUEST_HEADER_FIELDS_TOO_LARGE
     HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS
-    
+
     HTTP_500_INTERNAL_SERVER_ERROR
     HTTP_501_NOT_IMPLEMENTED
     HTTP_502_BAD_GATEWAY
@@ -115,8 +115,13 @@ def create_faq(request):
     author = request.user
     title = data.get('title')
     content = data.get('content')
+    cat = data.getlist('category')
+
     try:
         q = Question.objects.create(author=author, content=content, title=title)
+        for item in cat:
+            q.category.add(item)
+        q.save()
         response = {'success': 'Question Created Successfully'}
         stats = status.HTTP_201_CREATED
     except Exception as e:

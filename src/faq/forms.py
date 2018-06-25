@@ -11,6 +11,6 @@ class QuestionModelForm(forms.ModelForm):
 
     class Meta:
         model = Question
-        fields = ('title', 'content',)
+        fields = ('title', 'content', 'category')
         widgets = {'content': forms.Textarea(attrs={'class': 'counted'}),
                    }

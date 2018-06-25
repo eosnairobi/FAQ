@@ -3,12 +3,25 @@ import uuid
 from django.conf import settings
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.utils import timezone
 
 # Definition of the Questions + Answers
 
 
+class Category(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=300, blank=True)
+    icon = models.ImageField(blank=True)
+    created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
+
 class Question(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    category = models.ManyToManyField(Category)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asked_by', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250, unique_for_date='created_time', blank=True)
     title = models.CharField(max_length=200)

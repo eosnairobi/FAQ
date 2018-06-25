@@ -23,6 +23,7 @@
     <link href="{% static 'dashboard/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'dashboard/assets/plugins/DataTables/extensions/FixedColumns/css/fixedColumns.bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'dashboard/assets/plugins/bootstrap-select/bootstrap-select.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'dashboard/assets/plugins/select2/dist/css/select2.min.css' %}" rel="stylesheet" />
     <!-- ================== END BASE CSS STYLE ================== -->
     <link href="{% static 'dashboard/assets/plugins/jquery-jvectormap/jquery-jvectormap.css' %}" rel="stylesheet" />
     <!-- ================== END PAGE LEVEL STYLE ================== -->
@@ -172,6 +173,8 @@
     <script src="{% static 'dashboard/assets/js/demo/map-vector.demo.min.js' %}"></script>
     <script src="{% static 'dashboard/assets/plugins/bootstrap-select/bootstrap-select.min.js' %}"></script>
     <script src="{% static 'textarea.js' %}" type="text/javascript"></script>
+    <script src="{% static 'dashboard/assets/plugins/select2/dist/js/select2.min.js' %}"></script>
+
     <script src="{% static 'dashboard/assets/js/apps.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
     <script>
@@ -214,11 +217,15 @@
             size: 4
         });
 
+
+    
         App.init();
     });
     </script>
     <script>
     $(document).ready(function() {
+        
+   
         var $myForm = $('#question_form')
         $myForm.submit(function(event) {
             event.preventDefault()

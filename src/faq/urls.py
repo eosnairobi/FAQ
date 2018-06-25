@@ -21,11 +21,11 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 
-router.register(r'question', QuestionModelViewSet, base_name='question')
-router.register(r'answer', AnswerModelViewsSet, base_name='answers')
+router.register(r'api/questions', QuestionModelViewSet, base_name='questions')
+router.register(r'api/answers', AnswerModelViewsSet, base_name='answers')
 
 urlpatterns = [
-    path('home/', dashboard),
+    path('', dashboard),
     path('forum/', forum, name='forum'),
     path('forum-list/', forum_list, name='forum-list'),
     path('new-faq/', create_faq),
