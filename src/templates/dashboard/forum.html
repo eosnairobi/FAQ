@@ -28,70 +28,10 @@
 
 <body>
     <!-- begin #header -->
-    <div id="header" class="header navbar navbar-inverse navbar-fixed-top">
-        <!-- begin container -->
-        <div class="container">
-            <!-- begin navbar-header -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="index.html" class="navbar-brand">
-                    <span class="brand-text">
-                        EOSiO Forum
-                    </span>
-                </a>
-            </div>
-            <!-- end navbar-header -->
-            <!-- begin #header-navbar -->
-            <div class="collapse navbar-collapse" id="header-navbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form class="navbar-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Keywords..." />
-                                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                            </div>
-                        </form>
-                    </li>
-                    <li><a href="javascript:;">Create Account</a></li>
-                    <li><a href="javascript:;">Sign In</a></li>
-                </ul>
-            </div>
-            <!-- end #header-navbar -->
-        </div>
-        <!-- end container -->
-    </div>
+   {% include 'dashboard/forum-navbar.html' %}
     <!-- end #header -->
     <!-- begin search-banner -->
-    <div class="search-banner has-bg">
-        <!-- begin bg-cover -->
-        <div class="bg-cover">
-            <img src="{% static 'forum/assets/img/eos1.jpg' %}" alt="" />
-        </div>
-        <!-- end bg-cover -->
-        <!-- begin container -->
-        <div class="container">
-            <h1>{{ faqs.count }} Posts for discussion</h1>
-            <div class="input-group m-b-20">
-                <input type="text" class="form-control input-lg" placeholder="Search the forums" />
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-lg"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-            <h5>Browse by Popular Categories</h5>
-            <ul class="popular-tags">
-                {% for category in categories %}
-                <li><a href="#"><i class="fa fa-circle text-danger"></i> {{ category.name }}</a></li>
-                {% empty %}
-                <div class="alert alert-warning">No Categories Yet.</div>
-                {% endfor %}
-            </ul>
-        </div>
-        <!-- end container -->
-    </div>
+   {% include 'dashboard/forum-banner.html' %}
     <!-- end search-banner -->
     <!-- begin content -->
     <div class="content">
@@ -100,11 +40,12 @@
             <!-- begin panel-forum -->
             <div class="panel panel-forum">
                 <!-- begin panel-heading -->
-                {% for category in categories %}
+                
                 <div class="panel-heading panel-inverse">
                     <h4 class="panel-title">ALL CATEGORIES</h4>
                 </div>
                 <!-- end panel-heading -->
+                {% for category in categories %}
                 <!-- begin forum-list -->
                 <ul class="forum-list">
                     <li>
@@ -116,7 +57,7 @@
                         <!-- begin info-container -->
                         <div class="info-container">
                             <div class="info">
-                                <h4 class="title"><a href="category_list.html">{{ category.name }}</a></h4>
+                                <h4 class="title"><a href="{% url 'cat_questions' category.id %}">{{ category.name }}</a></h4>
                                 <p class="desc">
                                     {{ category.description }}
                                 </p>
@@ -145,75 +86,13 @@
     <!-- begin #footer -->
     <div id="footer" class="footer">
         <!-- begin container -->
-        <div class="container">
-            <!-- begin row -->
-            <div class="row">
-                <!-- begin col-4 -->
-                <div class="col-md-4">
-                    <!-- begin section-container -->
-                    <div class="section-container">
-                        <h4>About EOS Nairobi</h4>
-                        <p>
-                            <a href="http://www.eosnairobi.io"><strong>We</strong></a> are a Block Producer Candidate, from Nairobi, <span class="flag-icon flag-icon-ke width-full m-r-10 m-t-0 m-b-3" title="Vote For @eosnairobike" id="ke"></span> Our Vision is to enhance <a href="https://eos.io/"><strong>#EOS </strong></a> + Blockchain in
-                            <img src="{% static 'forum/assets/img/africa.png'%}" style="width:30px; height:30px;">.
-                            <p class="text-success"><strong>&middot; Vote &middot; for &middot; eosnairobike &middot;</strong></p>
-                        </p>
-                    </div>
-                    <!-- end section-container -->
-                </div>
-                <!-- end col-4 -->
-                <!-- begin col-4 -->
-                <div class="col-md-4">
-                    <!-- begin section-container -->
-                    <div class="section-container">
-                        <h4>Latest News</h4>
-                        <ul class="latest-post">
-                            <li>
-                                <h4 class="title"><a href="#">News 1</a></h4>
-                                <p class="time">yesterday 10:42am</p>
-                            </li>
-                            <li>
-                                <h4 class="title"><a href="#">Piece of News 2</a></h4>
-                                <p class="time">10/04/2018</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- end section-container -->
-                </div>
-                <!-- end col-4 -->
-                <!-- begin col-4 -->
-                <div class="col-md-4">
-                    <!-- begin section-container -->
-                    <div class="section-container">
-                        <h4>New Users</h4>
-                        <ul class="new-user">
-                            <li><a href="#" title="Hello Boy"><img src="{% static 'dashboard/assets/img/user/user-1.jpg' %}" alt="" /></a></li>
-                            <li><a href="#" title="This is #EOS"><img src="{% static 'dashboard/assets/img/user/user-2.jpg' %}" alt="" /></a></li>
-                            <li><a href="#" title="We are Proudly #EOSians"><img src="{% static 'dashboard/assets/img/user/user-3.jpg' %}" alt="" /></a></li>
-                            <li><a href="#"><img src="{% static 'dashboard/assets/img/user/user-4.jpg' %}" alt="" /></a></li>
-                            <li><a href="#"><img src="{% static 'dashboard/assets/img/user/user-5.jpg' %}" alt="" /></a></li>
-                            <li><a href="#"><img src="{% static 'dashboard/assets/img/user/user-6.jpg' %}" alt="" /></a></li>
-                            <li><a href="#"><img src="{% static 'dashboard/assets/img/user/user-7.jpg' %}" alt="" /></a></li>
-                            <li><a href="#"><img src="{% static 'dashboard/assets/img/user/user-8.jpg' %}" alt="" /></a></li>
-                            <li><a href="#"><img src="{% static 'dashboard/assets/img/user/user-9.jpg' %}" alt="" /></a></li>
-                        </ul>
-                    </div>
-                    <!-- end section-container -->
-                </div>
-                <!-- end col-4 -->
-            </div>
-            <!-- end row -->
-        </div>
+       {% include 'dashboard/forum-footer.html' %}
         <!-- end container -->
     </div>
     <!-- end #footer -->
     <!-- begin #footer-copyright -->
     <div id="footer-copyright" class="footer-copyright">
-        <div class="container">
-            &copy; 2018 No Rights Reserved
-            <a href="#">Contact Us</a>
-            <a href="#">Knowledge Base</a>
-        </div>
+        {% include 'dashboard/forum-footer-copyright.html' %}
     </div>
     <!-- end #footer-copyright -->
     <!-- begin theme-panel -->

@@ -22,6 +22,10 @@
     <link href="{% static 'dashboard/assets/plugins/flag-icon/css/flag-icon.css' %}" rel="stylesheet" />
     <!-- ================== END BASE CSS STYLE ================== -->
     
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="{% static 'dashboard/assets/plugins/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css' %}" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'dashboard/assets/plugins/pace/pace.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
@@ -35,7 +39,7 @@
     <div class="page-title has-bg">
         <!-- begin bg-cover -->
         <div class="bg-cover">
-            <img src="../assets/img/cover/cover-2.jpg" alt="" />
+            <img src="../assets/img/cover/cover-3.jpg" alt="" />
         </div>
         <!-- end bg-cover -->
         <!-- begin container -->
@@ -43,10 +47,11 @@
             <!-- begin breadcrumb -->
             <ul class="breadcrumb">
                 <li><a href="index.html">Forum</a></li>
+                <li><a href="category_list.html">{{ question.category }}</a></li>
                 <li class="active">&nbsp;</li>
             </ul>
             <!-- end breadcrumb -->
-            <h1>{{ category.name }}</h1>
+            <h1>{{ question.title }}</h1>
         </div>
         <!-- end container -->
     </div>
@@ -69,48 +74,58 @@
                             <li><a href="#">4</a></li>
                             <li><a href="#">5</a></li>
                             <li class="text"><span>...</span></li>
-                            <li><a href="#">322</a></li>
+                            <li><a href="#">10</a></li>
                             <li class="right"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
                         </ul>
                     </div>
                     <!-- end pagination -->
-                    <!-- begin panel-forum -->
-                    <div class="panel panel-forum">
-                        <!-- begin forum-list -->
-                        <ul class="forum-list forum-topic-list">
-                            {% for question in questions %}
-                            <li>
-                                <!-- begin media -->
-                                <div class="media">
-                                    <img src="../assets/img/user/user-1.jpg" alt="" />
+                    
+                    <!-- begin forum-list -->
+                    <ul class="forum-list forum-detail-list">
+                        <li>
+                            <!-- begin media -->
+                            <div class="media">
+                                <img src="../assets/img/user/user-1.jpg" alt="" />
+                                <span class="label label-danger">ADMIN</span>
+                            </div>
+                            <!-- end media -->
+                            <!-- begin info-container -->
+                            <div class="info-container">
+                                <div class="post-user"><a href="#">{{ question.author }}</a> </div>
+                                <div class="post-content">
+                                    {{ question.content }}
                                 </div>
-                                <!-- end media -->
-                                <!-- begin info-container -->
-                                <div class="info-container">
-                                    <div class="info">
-                                        <h4 class="title"><a href="{% url 'question_detail' question.id %}">{{ question.title }}</a></h4>
-                                        <ul class="info-start-end">
-                                            <li>Asked By<a href="detail.html">{{ question.author }}</a></li>
-                                            <li>latest reply <a href="detail.html">Kama Adisa</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="date-replies">
-                                        <div class="time">
-                                            8 hours ago
-                                        </div>
-                                        <div class="replies">
-                                            <div class="total">8</div>
-                                            <div class="text">REPLIES</div>
-                                        </div>
-                                    </div>
+                                <div class="post-time">4 hours ago</div>
+                            </div>
+                            <!-- end info-container -->
+                        </li>
+                        {% for answer in question.answers.all %}
+                        <li>
+                            <!-- begin media -->
+                            <div class="media">
+                                <img src="../assets/img/user/user-2.jpg" alt="" />
+                                <span class="label label-inverse">USER</span>
+                            </div>
+                            <!-- end media -->
+                            <!-- begin info-container -->
+                            <div class="info-container">
+                                <div class="post-user"><a href="#">Hagano</a> <small>SAYS</small></div>
+                                <div class="post-content">
+                                    Curabitur et tempus risus. Aenean et tortor pretium ligula elementum blandit. Aliquam in nibh vitae ligula molestie tristique nec quis augue.
                                 </div>
-                                <!-- end info-container -->
-                            </li>
-                           {% endfor %}
-                        </ul>
-                        <!-- end forum-list -->
+                                <div class="post-time">5 hours ago</div>
+                            </div>
+                            <!-- end info-container -->
+                        </li>
+                        {% empty %}
+                        <hr>
+                         <div class="comment-banner-msg">
+                        No Response for this question has been recorded yet
                     </div>
-                    <!-- end panel-forum -->
+                        {% endfor %}
+                      
+                    </ul>
+                    <!-- end forum-list -->
                     
                     <!-- begin pagination -->
                     <div class="text-right">
@@ -121,11 +136,28 @@
                             <li><a href="#">4</a></li>
                             <li><a href="#">5</a></li>
                             <li class="text"><span>...</span></li>
-                            <li><a href="#">322</a></li>
+                            <li><a href="#">10</a></li>
                             <li class="right"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
                         </ul>
                     </div>
                     <!-- end pagination -->
+                    
+                    <!-- begin comment-section -->
+                   
+                    <div class="panel panel-forum">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Comment</h4>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/" name="wysihtml5" method="POST">
+                                <textarea class="textarea form-control" id="wysihtml5" placeholder="Enter text ..." rows="12"></textarea>
+                                <div class="m-t-10">
+                                    <button type="submit" class="btn btn-theme">Post Comment <i class="fa fa-paper-plane"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end comment-section -->
                 </div>
                 <!-- end col-9 -->
                 <!-- begin col-3 -->
@@ -176,14 +208,12 @@
     
     <!-- begin #footer -->
     <div id="footer" class="footer">
-        <!-- begin container -->
-        {% include 'dashboard/forum-footer.html' %}
-        <!-- end container -->
+        {% include 'dashboard/forum-footer.html' %}      
     </div>
     <!-- end #footer -->
     <!-- begin #footer-copyright -->
     <div id="footer-copyright" class="footer-copyright">
-        {% include 'dashboard/forum-footer-copyright.html' %}
+       {% include 'dashboard/forum-footer-copyright.html' %}
     </div>
     <!-- end #footer-copyright -->
     <!-- begin theme-panel -->
@@ -191,6 +221,7 @@
     <!-- end theme-panel -->
     
     <!-- ================== BEGIN BASE JS ================== -->
+    
     <script src="{% static 'dashboard/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'dashboard/assets/plugins/bootstrap3/js/bootstrap.min.js' %}"></script>
     <!--[if lt IE 9]>
@@ -202,9 +233,16 @@
     <script src="{% static 'dashboard/assets/js/forum/apps.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
     
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="{% static 'dashboard/assets/plugins/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js' %}"></script>
+    <script src="{% static 'dashboard/assets/plugins/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js' %}"></script>
+    <script src="{% static 'dashboard/assets/js/forum/forum-details-page.min.js' %}"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    
     <script>    
         $(document).ready(function() {
             App.init();
+            ForumDetailsPage.init();
         });
     </script>
 </body>

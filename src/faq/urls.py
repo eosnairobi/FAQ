@@ -13,9 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
-from .views import dashboard, forum, forum_list
-from .api.views import TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet, create_faq, save_reaction, AnswerModelViewsSet
+from django.urls import path, re_path
+from .views import dashboard, forum, forum_list, questions, question
+from .api.views import (TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet,
+                        create_faq, save_reaction, AnswerModelViewsSet)
 
 from rest_framework.routers import DefaultRouter
 
@@ -30,6 +31,9 @@ urlpatterns = [
     path('forum-list/', forum_list, name='forum-list'),
     path('new-faq/', create_faq),
     path('save-response/', save_reaction, name='save_reaction'),
+    # path('questions/', questions, name='questions'),
+    re_path(r'^questions/(?P<id>[\w-]+)/$', questions, name='cat_questions'),
+    re_path(r'^question/(?P<id>[\w-]+)/$', question, name='question_detail'),
 ]
 
 

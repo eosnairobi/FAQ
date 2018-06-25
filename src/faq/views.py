@@ -18,7 +18,8 @@ def forum(request):
     if request.method == 'GET':
         question_form = QuestionModelForm()
 
-    return render(request, 'dashboard/forum.html', {'questions': questions, 'question_form': question_form, 'categories': categories})
+    return render(request, 'dashboard/forum.html', {'questions': questions,
+                                                    'question_form': question_form, 'categories': categories})
 
 
 def forum_list(request):
@@ -31,3 +32,16 @@ def forum_list(request):
         question_form = QuestionModelForm()
 
     return render(request, 'dashboard/list_ajax.html', {'questions': questions, 'question_form': question_form})
+
+
+def questions(request, id):
+    category = Category.objects.get(id=id)
+    print(category)
+    qs = category.categories.all()
+    return render(request, 'dashboard/questions_list.html', {'category': category, 'questions': qs})
+
+
+def question(request, id):
+    question = Question.objects.get(id=id)
+    print(question)
+    return render(request, 'dashboard/question_detail.html', {'question': question})

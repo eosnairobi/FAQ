@@ -21,7 +21,7 @@ class Category(models.Model):
 
 class Question(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, related_name='categories')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asked_by', on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250, unique_for_date='created_time', blank=True)
     title = models.CharField(max_length=200)

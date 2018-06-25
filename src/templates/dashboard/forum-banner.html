@@ -1,0 +1,27 @@
+{% load static %}
+ <div class="search-banner has-bg">
+        <!-- begin bg-cover -->
+        <div class="bg-cover">
+            <img src="{% static 'forum/assets/img/eos1.jpg' %}" alt="" />
+        </div>
+        <!-- end bg-cover -->
+        <!-- begin container -->
+        <div class="container">
+            <h1>{{ faqs.count }} Posts for discussion</h1>
+            <div class="input-group m-b-20">
+                <input type="text" class="form-control input-lg" placeholder="Search the forums" />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-lg"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <h5>Browse by Popular Categories</h5>
+            <ul class="popular-tags">
+                {% for category in categories %}
+                <li><a href="#"><i class="fa fa-circle text-danger"></i> {{ category.name }}</a></li>
+                {% empty %}
+                <div class="alert alert-warning">No Categories Yet.</div>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- end container -->
+    </div>
