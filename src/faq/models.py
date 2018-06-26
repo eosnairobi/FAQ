@@ -37,6 +37,10 @@ class Question(models.Model):
             self.slug = slugify(self.title)
             super(Question, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('question_detail', args=[str(self.id)])
+
     class Meta:
         ordering = ('-created_time',)
 
@@ -67,6 +71,11 @@ class Answer(models.Model):
     content = models.TextField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='answered_by', on_delete=models.CASCADE)
     upvoted = models.BooleanField(default=False)
+    created = models.DateTimeField(default=timezone.now)
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('answer_detail', args=[str(self.id)])
 
     # def __str__(self):
     # return self.
@@ -80,3 +89,10 @@ class QuestionUpvote(models.Model):
 class AnswerUpvote(models.Model):
     answer = models.OneToOneField(Answer, related_name='answer_upvote', on_delete=models.CASCADE)
     voter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='upvoted_by', on_delete=models.CASCADE)
+
+
+class Mention(models.Model):
+    initiator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    mentioned = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='mentioned')
+    created = models.DateTimeField(default=timezone.now)
+    subject_url = models.URLField(blank=True)

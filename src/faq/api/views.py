@@ -7,7 +7,7 @@ from .serializers import QuestionSerializer, TagSerializer, QuestionUpvoteSerial
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from ..models import Question
-
+from ..tasks import parse_content
 # Just the skeleton for now. More Work is coming
 
 
@@ -124,6 +124,7 @@ def create_faq(request):
         q.save()
         response = {'success': 'Question Created Successfully'}
         stats = status.HTTP_201_CREATED
+        parse_content.delay(content, q.id)
     except Exception as e:
         print(str(e))
         response = {'error': 'Question not created Successfully'}
@@ -150,6 +151,7 @@ def save_reaction(request):
             serialized = answer.data
             response = {'success': 'Hey Eosian, your reaction was noted, with thanks!'}
             stat = status.HTTP_201_CREATED
+            parse_content.delay(content, a.id)
         except Exception as e:
             print(str(e))
             response = {'error': 'We are just finding it difficult to save your Reaction'}

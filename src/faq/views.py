@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .forms import QuestionModelForm
-from .models import Question, Category
+from .models import Question, Category, Answer, Mention
+from django.contrib.auth.models import User
 
 
 def dashboard(request):
@@ -45,3 +46,15 @@ def question(request, id):
     question = Question.objects.get(id=id)
     print(question)
     return render(request, 'dashboard/question_detail.html', {'question': question})
+
+
+def answer(request, id):
+    answer = Answer.objects.get(id=id)
+    return render(request, 'dashboard/answer_detail.html')
+
+
+def mentions(request, account):
+    mentioned = User.objects.get(username=account)
+    mentions = mentioned.mentioned.all()
+    print(mentions)
+    return render(request, 'dashboard/mentions.html', {'mentions': mentions})

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'crispy_forms',
     'django_filters',
+    'notifications',
     'rest_framework',
     'sorl.thumbnail',
 

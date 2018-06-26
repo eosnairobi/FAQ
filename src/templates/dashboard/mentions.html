@@ -42,11 +42,10 @@
         <div class="container">
             <!-- begin breadcrumb -->
             <ul class="breadcrumb">
-                <li><a href="index.html">Forum</a></li>
+                <li><a href="index.html">Notifications</a></li>
                 <li class="active">&nbsp;</li>
             </ul>
             <!-- end breadcrumb -->
-            <h1>{{ category.name }}</h1>
         </div>
         <!-- end container -->
     </div>
@@ -78,7 +77,7 @@
                     <div class="panel panel-forum">
                         <!-- begin forum-list -->
                         <ul class="forum-list forum-topic-list">
-                            {% for question in questions %}
+                            {% for mention in mentions %}
                             <li>
                                 <!-- begin media -->
                                 <div class="media">
@@ -88,19 +87,14 @@
                                 <!-- begin info-container -->
                                 <div class="info-container">
                                     <div class="info">
-                                        <h4 class="title"><a href="{% url 'question_detail' question.id %}">{{ question.title }}</a></h4>
+                                        <h4 class="title"><a href="">{{ question.title }}</a></h4>
                                         <ul class="info-start-end">
-                                            <li>Asked By<a href="detail.html">{{ question.author }}</a></li>
-                                            <li>latest reply <a href="detail.html">Kama Adisa</a></li>
+                                            <li><a href="">{{ mention.initiator }}</a> Mentioned you <a href="{{ mention.subject_url }}"> here</a></li>
                                         </ul>
                                     </div>
                                     <div class="date-replies">
                                         <div class="time">
-                                            {{ question.created_time | timesince}}
-                                        </div>
-                                        <div class="replies">
-                                            <div class="total">{{ question.answers.all.count }}</div>
-                                            <div class="text">REPLIES</div>
+                                            {{ mention.created | timesince}} Ago
                                         </div>
                                     </div>
                                 </div>
