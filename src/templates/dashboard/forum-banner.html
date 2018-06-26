@@ -17,7 +17,7 @@
             <h5>Browse by Popular Categories</h5>
             <ul class="popular-tags">
                 {% for category in categories %}
-                <li><a href="#"><i class="fa fa-circle text-danger"></i> {{ category.name }}</a></li>
+                <li><a href="{% url 'cat_questions' category.id %}"><i class="fa fa-circle text-danger"></i> {{ category.name }}</a></li>
                 {% empty %}
                 <div class="alert alert-warning">No Categories Yet.</div>
                 {% endfor %}

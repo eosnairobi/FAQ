@@ -95,30 +95,7 @@
                             </div>
                             <!-- end info-container -->
                         </li>
-                        {% for answer in question.answers.all %}
-                        <li>
-                            <!-- begin media -->
-                            <div class="media">
-                                <img src="../assets/img/user/user-2.jpg" alt="" />
-                                <span class="label label-inverse">USER</span>
-                            </div>
-                            <!-- end media -->
-                            <!-- begin info-container -->
-                            <div class="info-container">
-                                <div class="post-user"><a href="#">{{ answer.author }}</a> <small>SAYS</small></div>
-                                <div class="post-content">
-                                    {{ answer.content }}
-                                </div>
-                                <div class="post-time">{{ answer.created }}</div>
-                            </div>
-                            <!-- end info-container -->
-                        </li>
-                        {% empty %}
-                        <hr>
-                        <div class="comment-banner-msg">
-                            No Response for this question has been recorded yet
-                        </div>
-                        {% endfor %}
+                       
                     </ul>
                     <!-- end forum-list -->
                     <!-- begin pagination -->
@@ -136,20 +113,7 @@
                     </div>
                     <!-- end pagination -->
                     <!-- begin comment-section -->
-                    <div class="panel panel-forum">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Comment</h4>
-                        </div>
-                        <div class="panel-body">
-                            <form name="wysihtml5" method="POST" class="reactions_form" id="reactions_form">
-                                <input type="text" name="question_id" value="{{ question.id }}" hidden="true">
-                                <textarea class="textarea form-control" id="wysihtml5" placeholder="Enter text ..." rows="12" name="reaction"></textarea>
-                                <div class="m-t-10">
-                                    <button type="submit" class="btn btn-theme">Post Comment <i class="fa fa-paper-plane"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    
                     <!-- end comment-section -->
                 </div>
                 <!-- end col-9 -->
