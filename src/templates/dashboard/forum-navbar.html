@@ -15,6 +15,12 @@
                     <span class="brand-text">
                         EOSiO Forum
                     </span>
+                     <span class="">
+                </a>
+                <a href="{% url 'home' %}" class="navbar-brand">
+                    <span class="brand-text">
+                        Dashboard
+                    </span>
                 </a>
         </div>
         <!-- end navbar-header -->
@@ -43,7 +49,7 @@
                         </li>
                         
                         <li class="dropdown-footer text-center">
-                            <a href="javascript:;">View more</a>
+                            <a href="{% url 'user_mentions' request.user.username %}">View more</a>
                         </li>
                     </ul>
                 </li>

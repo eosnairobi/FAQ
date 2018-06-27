@@ -58,3 +58,7 @@ def mentions(request, account):
     mentions = mentioned.mentioned.all()
     print(mentions)
     return render(request, 'dashboard/mentions.html', {'mentions': mentions})
+
+
+def tools(request):
+    return render(request, 'dashboard/tools.html')
