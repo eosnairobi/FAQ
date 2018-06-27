@@ -1,4 +1,4 @@
-{% load static %}
+{% load static crispy_forms_tags %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -20,7 +20,15 @@
     <link href="{% static 'forum/assets/css/forum/style-responsive.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/css/forum/theme/default.css' %}" id="theme" rel="stylesheet" />
     <link href="{% static 'dashboard/assets/plugins/flag-icon/css/flag-icon.css' %}" rel="stylesheet" />
-   
+    <style type="text/css">
+    .zoom {
+        position: fixed;
+        bottom: 45px;
+        right: 24px;
+        height: 70px;
+        z-index: 1;
+    }
+    </style>
     <!-- ================== END BASE CSS STYLE ================== -->
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'forum/assets/plugins/pace/pace.min.js' %}"></script>
@@ -29,10 +37,10 @@
 
 <body>
     <!-- begin #header -->
-   {% include 'dashboard/forum-navbar.html' %}
+    {% include 'dashboard/forum-navbar.html' %}
     <!-- end #header -->
     <!-- begin search-banner -->
-   {% include 'dashboard/forum-banner.html' %}
+    {% include 'dashboard/forum-banner.html' %}
     <!-- end search-banner -->
     <!-- begin content -->
     <div class="content">
@@ -41,7 +49,6 @@
             <!-- begin panel-forum -->
             <div class="panel panel-forum">
                 <!-- begin panel-heading -->
-                
                 <div class="panel-heading panel-inverse">
                     <h4 class="panel-title">ALL CATEGORIES</h4>
                 </div>
@@ -81,40 +88,153 @@
             <!-- begin panel-forum -->
         </div>
         <!-- end panel-forum -->
-    </div>
-    <!-- end container -->
-    <!-- end content -->
-    <!-- begin #footer -->
-    <div id="footer" class="footer">
-        <!-- begin container -->
-       {% include 'dashboard/forum-footer.html' %}
+        <div class="zoom">
+            <a href="#ask-dialog" class="btn btn-circle btn-success" data-toggle="modal"><i class="fa fa-edit"></i></a>
+        </div>
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="ask-dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <form id='question_form' disabled='true'>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center">Ask Your Question</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="err"></div>
+                            {{ question_form | crispy }}
+                            <span class="counter" id="counter">140 characters remaining</span>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
+                            <input type="submit" name="submit_question" class="btn btn-success">
+                        </div>
+                </form>
+                </div>
+            </div>
+        </div>
         <!-- end container -->
-    </div>
-    <!-- end #footer -->
-    <!-- begin #footer-copyright -->
-    <div id="footer-copyright" class="footer-copyright">
-        {% include 'dashboard/forum-footer-copyright.html' %}
-    </div>
-    <!-- end #footer-copyright -->
-    <!-- begin theme-panel -->
-    <!-- end theme-panel -->
-    <!-- ================== BEGIN BASE JS ================== -->
-    <script src="{% static 'forum/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'forum/assets/plugins/bootstrap3/js/bootstrap.min.js' %}"></script>
-    <!--[if lt IE 9]>
+        <!-- end content -->
+        <!-- begin #footer -->
+        <div id="footer" class="footer">
+            <!-- begin container -->
+            {% include 'dashboard/forum-footer.html' %}
+            <!-- end container -->
+        </div>
+        <!-- end #footer -->
+        <!-- begin #footer-copyright -->
+        <div id="footer-copyright" class="footer-copyright">
+            {% include 'dashboard/forum-footer-copyright.html' %}
+        </div>
+        <!-- end #footer-copyright -->
+        <!-- begin theme-panel -->
+        <!-- end theme-panel -->
+        <!-- ================== BEGIN BASE JS ================== -->
+        <script src="{% static 'forum/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'forum/assets/plugins/bootstrap3/js/bootstrap.min.js' %}"></script>
+        <!--[if lt IE 9]>
         <script src="assets/crossbrowserjs/html5shiv.js"></script>
         <script src="assets/crossbrowserjs/respond.min.js"></script>
         <script src="assets/crossbrowserjs/excanvas.min.js"></script>
     <![endif]-->
-    <script src="{% static 'forum/assets/plugins/js-cookie/js.cookie.js' %}"></script>
-    <script src="{% static 'forum/assets/js/forum/apps.min.js' %}"></script>
-   
-    <!-- ================== END BASE JS ================== -->
-    <script>
-    $(document).ready(function() {
-        App.init();
-    });
-    </script>
+        <script src="{% static 'forum/assets/plugins/js-cookie/js.cookie.js' %}"></script>
+        <script src="{% static 'forum/assets/js/forum/apps.min.js' %}"></script>
+        <!-- ================== END BASE JS ================== -->
+        <script>
+        // using jQuery - Conquer CSRF 
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        </script>
+        <script>
+        $(document).ready(function() {
+
+
+            var $myForm = $('#question_form')
+            $myForm.submit(function(event) {
+                event.preventDefault()
+                var $formData = $(this).serialize()
+                console.log($formData)
+                // var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+                $.ajax({
+                    method: "POST",
+                    url: "/new-faq/",
+                    data: $formData,
+                    success: function(data, textStatus, xhr) {
+                        console.log(data, xhr.status, 'success');
+                        $myForm[0].reset(); // reset form data
+                        $("#ask-dialog").modal("hide");
+                        $("#results").html("<div class='alert alert-success fade show'><span class='close' data-dismiss='alert'>×</span>" +
+                            "<strong>Success!</strong> Your Question Was submitted Successfully</div>");
+                        var url = $(this).attr('href');
+                        window.open(url, '_blank');
+                    },
+                    error: function(data, textStatus, xhr) {
+                        console.log(xhr.status, 'error encountered here');
+                        $("#err").html("<div class='alert alert-danger fade show'><span class='close' data-dismiss='alert'>×</span>" +
+                            "<strong>Error!</strong> Your Question Was NOT submitted Successfully</div>");
+                    },
+                    complete: function(xhr, textStatus) {
+                        console.log(xhr.status, 'finished');
+                        var url = $(this).attr('href');
+                        window.open(url, '_blank');
+                    }
+                })
+            })
+
+            function scroll() {
+                console.log('scrolling to top');
+                window.scroll({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            function handleFormSuccess(data, textStatus, jqXHR) {
+                console.log(data)
+                console.log(textStatus)
+                console.log(jqXHR)
+                $myForm.reset(); // reset form data
+            }
+
+            function handleFormError(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR)
+                console.log(textStatus)
+                console.log(errorThrown)
+            }
+        });
+        </script>
+        <script>
+        $(document).ready(function() {
+            App.init();
+        });
+        </script>
 </body>
 
 </html>

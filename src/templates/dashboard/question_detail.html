@@ -1,4 +1,4 @@
-{% load static thumbnail %}
+{% load static thumbnail bleach_tags %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -100,7 +100,7 @@
                             <div class="info-container">
                                 <div class="post-user"><a href="#">{{ answer.author }}</a> <small>SAYS</small></div>
                                 <div class="post-content">
-                                    {{ answer.content }}
+                                    {{ answer.content|bleach  }}
                                 </div>
                                 <div class="post-time">{{ answer.created }}</div>
                             </div>
@@ -128,10 +128,10 @@
                             <h4 class="panel-title">Comment</h4>
                         </div>
                         <div class="panel-body">
-                            <form method="POST" class="reactions_form" id="reactions_form">
+                            <form method="POST" class="reactions_form" name="wysihtml5" id="reactions_form">
                                 <input type="text" name="question_id" value="{{ question.id }}" hidden="true"> 
                                 {# <textarea class="textarea form-control" id="wysihtml5" placeholder="Enter text ..." rows="12" name="reaction"></textarea> #}
-                                <textarea class="textarea form-control" rows="12" name="reaction" {% if not request.user.is_authenticated %}placeholder="Only Available to authenticated users" disabled="true" {% else %} placeholder="Type your Reactions here ..." {% endif %}></textarea>
+                                <textarea class="textarea form-control" id="wysihtml5" rows="12" name="reaction" {% if not request.user.is_authenticated %}placeholder="Only Available to authenticated users" disabled="true" {% else %} placeholder="Type your Reactions here ..." {% endif %}></textarea>
                                 <div class="m-t-10">
                                     <button type="submit" class="btn btn-theme">Post Comment <i class="fa fa-paper-plane"></i></button>
                                 </div>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'corsheaders',
     'crispy_forms',
+    'django_bleach',
     'django_filters',
     'notifications',
     'rest_framework',
@@ -145,3 +146,21 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+# Which HTML tags are allowed
+BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong', 'a', 'h1', 'hr', 'br', 'pre', 'code', 'ul', 'ol', 'li', 't', 'n']
+
+# Which HTML attributes are allowed
+BLEACH_ALLOWED_ATTRIBUTES = ['href', 'title', 'style']
+
+# Which CSS properties are allowed in 'style' attributes (assuming style is
+# an allowed attribute)
+BLEACH_ALLOWED_STYLES = [
+    'font-family', 'font-weight', 'text-decoration', 'font-variant']
+
+# Strip unknown tags if True, replace with HTML escaped characters if False
+BLEACH_STRIP_TAGS = True
+
+# Strip HTML comments, or leave them in.
+BLEACH_STRIP_COMMENTS = False
