@@ -4,33 +4,32 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
+
 <head>
     <meta charset="utf-8" />
     <title>EOSiO | Support Forum </title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
-    
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="{% static 'forum/assets/plugins/bootstrap3/css/bootstrap.min.css' %}" rel="stylesheet" />
-     <link href="{% static 'dashboard/assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'dashboard/assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/plugins/animate/animate.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/css/forum/style.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/css/forum/style-responsive.min.css' %}" rel="stylesheet" />
     <link href="{% static 'forum/assets/css/forum/theme/default.css' %}" id="theme" rel="stylesheet" />
     <link href="{% static 'dashboard/assets/plugins/flag-icon/css/flag-icon.css' %}" rel="stylesheet" />
     <!-- ================== END BASE CSS STYLE ================== -->
-    
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'forum/assets/plugins/pace/pace.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+
 <body>
     <!-- begin #header -->
-   {% include 'dashboard/forum-navbar.html' %}
+    {% include 'dashboard/forum-navbar.html' %}
     <!-- end #header -->
-    
     <!-- begin page-title -->
     <div class="page-title has-bg">
         <!-- begin bg-cover -->
@@ -51,7 +50,6 @@
         <!-- end container -->
     </div>
     <!-- end page-title -->
-    
     <!-- begin content -->
     <div class="content">
         <!-- begin container -->
@@ -64,12 +62,6 @@
                     <div class="text-right">
                         <ul class="pagination m-t-0 m-b-15">
                             <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li class="text"><span>...</span></li>
-                            <li><a href="#">322</a></li>
                             <li class="right"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
                         </ul>
                     </div>
@@ -91,7 +83,6 @@
                                         <h4 class="title"><a href="{% url 'question_detail' question.id %}">{{ question.title }}</a></h4>
                                         <ul class="info-start-end">
                                             <li>Asked By <a href="">{{ question.author }}</a></li>
-                                            
                                         </ul>
                                     </div>
                                     <div class="date-replies">
@@ -106,22 +97,15 @@
                                 </div>
                                 <!-- end info-container -->
                             </li>
-                           {% endfor %}
+                            {% endfor %}
                         </ul>
                         <!-- end forum-list -->
                     </div>
                     <!-- end panel-forum -->
-                    
                     <!-- begin pagination -->
                     <div class="text-right">
                         <ul class="pagination m-t-0">
                             <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li class="text"><span>...</span></li>
-                            <li><a href="#">322</a></li>
                             <li class="right"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
                         </ul>
                     </div>
@@ -137,7 +121,6 @@
                         </div>
                         <!-- begin threads-list -->
                         <ul class="threads-list">
-                           
                         </ul>
                         <!-- end threads-list -->
                     </div>
@@ -150,7 +133,6 @@
         <!-- end container -->
     </div>
     <!-- end content -->
-    
     <!-- begin #footer -->
     <div id="footer" class="footer">
         <!-- begin container -->
@@ -164,9 +146,7 @@
     </div>
     <!-- end #footer-copyright -->
     <!-- begin theme-panel -->
-   
     <!-- end theme-panel -->
-    
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'forum/assets/plugins/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'forum/assets/plugins/bootstrap3/js/bootstrap.min.js' %}"></script>
@@ -178,11 +158,11 @@
     <script src="{% static 'forumd/assets/plugins/js-cookie/js.cookie.js' %}"></script>
     <script src="{% static 'forum/assets/js/forum/apps.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
-    
-    <script>    
-        $(document).ready(function() {
-            App.init();
-        });
+    <script>
+    $(document).ready(function() {
+        App.init();
+    });
     </script>
 </body>
+
 </html>
