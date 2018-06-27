@@ -1,4 +1,4 @@
-{% load static %}
+{% load static notifications_tags %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -166,6 +166,8 @@
     <script src="{% static 'dashboard/assets/plugins/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js' %}"></script>
     <script src="{% static 'dashboard/assets/plugins/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js' %}"></script>
     <script src="{% static 'dashboard/assets/js/forum/forum-details-page.min.js' %}"></script>
+{% register_notify_callbacks refresh_period=2 fetch=10 callbacks='fill_notification_list,fill_notification_badge' %}
+
 
     <!-- ================== END PAGE LEVEL JS ================== -->
     <script>

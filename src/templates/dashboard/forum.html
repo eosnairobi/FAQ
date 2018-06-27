@@ -1,4 +1,4 @@
-{% load static crispy_forms_tags %}
+{% load static crispy_forms_tags notifications_tags %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -137,6 +137,8 @@
         <script src="assets/crossbrowserjs/excanvas.min.js"></script>
     <![endif]-->
         <script src="{% static 'forum/assets/plugins/js-cookie/js.cookie.js' %}"></script>
+        <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+        {% register_notify_callbacks refresh_period=2 fetch=10 callbacks='fill_notification_list,fill_notification_badge' %}
         <script src="{% static 'forum/assets/js/forum/apps.min.js' %}"></script>
         <!-- ================== END BASE JS ================== -->
         <script>

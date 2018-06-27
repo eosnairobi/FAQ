@@ -1,4 +1,4 @@
-{% load static thumbnail %}
+{% load static thumbnail notifications_tags %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -157,6 +157,8 @@
     <![endif]-->
     <script src="{% static 'forumd/assets/plugins/js-cookie/js.cookie.js' %}"></script>
     <script src="{% static 'forum/assets/js/forum/apps.min.js' %}"></script>
+{% register_notify_callbacks refresh_period=2 fetch=10 callbacks='fill_notification_list,fill_notification_badge' %}
+
     <!-- ================== END BASE JS ================== -->
     <script>
     $(document).ready(function() {
