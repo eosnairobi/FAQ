@@ -131,7 +131,8 @@
                             <form method="POST" class="reactions_form" id="reactions_form">
                                 <input type="text" name="question_id" value="{{ question.id }}" hidden="true">
                                 {# <textarea class="textarea form-control" id="wysihtml5" placeholder="Enter text ..." rows="12" name="reaction"></textarea> #}
-                                <textarea class="textarea form-control" placeholder="Type your Reactions here ..." rows="12" name="reaction"></textarea>
+
+                                <textarea class="textarea form-control" placeholder="Type your Reactions here ..." rows="12" name="reaction" {% if not request.user.is_authenticated %} disabled="true" {% endif%}></textarea>
                                 <div class="m-t-10">
                                     <button type="submit" class="btn btn-theme">Post Comment <i class="fa fa-paper-plane"></i></button>
                                 </div>
