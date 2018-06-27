@@ -1,4 +1,4 @@
-{% load static %}
+{% load static thumbnail %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -74,7 +74,7 @@
                             <li>
                                 <!-- begin media -->
                                 <div class="media">
-                                    <img src="{% static 'dashboard/assets/img/user/user-1.jpg' %}" alt="" />
+                                    <img src="{% thumbnail user.profile.photo|default:'default_profile.png' 50x50 crop %}" alt="" />
                                 </div>
                                 <!-- end media -->
                                 <!-- begin info-container -->

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django_filters',
     'notifications',
     'rest_framework',
-    'sorl.thumbnail',
+    # 'sorl.thumbnail',
+    'easy_thumbnails',
 
 
     # Our Apps
