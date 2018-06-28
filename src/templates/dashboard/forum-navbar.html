@@ -1,6 +1,5 @@
- {% load static notifications_tags %}
-<script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
-{% register_notify_callbacks refresh_period=2 fetch=10 callbacks='fill_notification_list,fill_notification_badge' %}
+ {% load staticfiles notifications_tags %}
+
 <div id="header" class="header navbar navbar-inverse navbar-fixed-top">
     <!-- begin container -->
     <div class="container">
