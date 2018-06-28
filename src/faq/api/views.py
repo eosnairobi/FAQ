@@ -141,6 +141,7 @@ def save_reaction(request):
         content = data.get('reaction')
     except Exception as e:
         response = {'error': 'Looks like you are answering a question that does not exist'}
+        print(response)
         stat = status.HTTP_404_NOT_FOUND
     if question and content:
         try:
