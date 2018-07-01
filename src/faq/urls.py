@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, re_path
-from .views import dashboard, forum, forum_list, questions, question, answer, mentions, tools
+from .views import dashboard, forum, forum_list, questions, question, answer, mentions, tools, repos, eos_911
 from .api.views import (TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet,
                         create_faq, save_reaction, AnswerModelViewsSet)
 
@@ -31,8 +31,9 @@ urlpatterns = [
     path('forum/', forum, name='forum'),
     path('forum-list/', forum_list, name='forum-list'),
     path('new-faq/', create_faq),
+    path('eos-911/', eos_911, name='eos_911'),
     path('save-response/', save_reaction, name='save_reaction'),
-    # path('questions/', questions, name='questions'),
+    path('github-repos/', repos, name='repos'),
     re_path(r'^questions/(?P<id>[\w-]+)/$', questions, name='cat_questions'),
     re_path(r'^question/(?P<id>[\w-]+)/$', question, name='question_detail'),
     re_path(r'^answer/(?P<id>[\w-]+)/$', answer, name='answer_detail'),
