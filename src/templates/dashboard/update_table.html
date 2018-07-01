@@ -8,7 +8,7 @@
 setInterval(function() {
     $.ajax({
         method: "POST",
-        url: "http://mainnet.eoscanada.com/v1/chain/get_producers",
+        url: "http://api1.eosnairobi.io:8898/v1/chain/get_producers",
         dataType: "json",
         // contentType:"application/json",
         data: JSON.stringify({ 'json': true, 'limit': 300 }),
