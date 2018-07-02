@@ -70,3 +70,7 @@ def repos(request):
 
 def eos_911(request):
     return render(request, 'dashboard/911.html')
+
+
+def dapps(request):
+    return render(request, 'dashboard/dapps.html')
