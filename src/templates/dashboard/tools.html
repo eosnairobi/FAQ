@@ -25,11 +25,11 @@
     <script src="{% static 'dashboard/assets/plugins/pace/pace.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
     <style type="text/css">
-#circle {
-        height: 1rem;
-        width: 1rem;
+    #circle {
+        height: 0.7rem;
+        width: 0.7rem;
         border-radius: 4rem;
-        opacity: 0.0;
+        opacity: 0.5;
         -webkit-animation: pulsate 1000ms ease-out;
         -webkit-animation-iteration-count: infinite;
         -webkit-transition: background-color 300ms linear;
@@ -63,7 +63,7 @@
     }
 
     .some-other-status {
-        background: blue;
+        background: yellow;
     }
     /* useless */
 
@@ -82,7 +82,10 @@
     .set:hover {
         background: #dedede;
     }
-}
+
+    .floater {
+        float: left;
+    }
     </style>
 </head>
 
@@ -120,20 +123,19 @@
             <div id="options" class="m-b-10">
                 <span class="gallery-option-set" id="filter" data-option-key="filter">
 
-                    <a href="#show-all" class="btn btn-outline-success  btn-xs active" data-option-value="*">Show All</a>
-                    <a href="#gallery-group-1" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-1">Voting</a>
-                    <a href="#gallery-group-2" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-2">Block Explorers</a>
-                    <a href="#gallery-group-4" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-4">Wallets</a>
-                    <a href="#gallery-group-4" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-4">Bots</a>
-                    <a href="#gallery-group-3" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-3">Others</a>
+                    <button class="btn btn-outline-success  btn-xs active" id="all">Show All</a>
+                    {% for category in categories %}
+                     <button class="btn btn-outline-success btn-xs" id="{{ category.id }}">{{ category.name }}</button>
+                     {% endfor %}
                      <input type="text" class="form-control" id="filter" placeholder="Filter By Name">
+                    
                 </span>
             </div>
             <!-- begin row -->
             <br>
-            <div class="row">
+            <div class="row" id="parent">
                 {% for tool in tools %}
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-3 floater  {{ tool.category.id }}">
                     <div class="card card-inverse">
                         <img class="card-img" src="{% thumbnail tool.image|default:'eosio.png' 300x300 %}" alt="" />
                         <div class="card-img-overlay">
@@ -142,7 +144,7 @@
                             <br>
                             <br>
                             <br>
-                            <p class="card-text text-warning pull-right"><small><strong>By {{ tool.created_by }}</strong></small></p>
+                            <p class="card-text text-warning pull-right"><small><strong>By {{ tool.created_by }} </strong></small></p>
                             <a href="{{ tool.link }}" class="btn btn-outline-success btn-xs">Visit Site</a>
                         </div>
                     </div>
@@ -185,34 +187,16 @@
     });
     </script>
     <script>
-    $("#filter").keyup(function() {
-
-        // Retrieve the input field text and reset the count to zero
-        var filter = $(this).val(),
-            count = 0;
-
-
-        // Loop through the comment list
-        $(".card-body").each(function() {
-
-            // If the list item does not contain the text phrase fade it out
-            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-                $(this).hide();
-                console.log('In if Statement Count =' + count + ' Variable =' + $(this).text().search(new RegExp(filter, "i")));
-                if (count < 1) {
-                    console.log('None found');
-                    $(".not-found").show();
-                }
-
-                // Show the list item if the phrase matches and increase the count by 1
-            } else {
-                $(this).fadeIn();
-                $(".not-found").hide();
-                console.log($(this).text().search(new RegExp(filter, "i")));
-                count++;
-                console.log('In Else Statement Count=' + count + 'Variable =' + $(this).text().search(new RegExp(filter, "i")))
-            }
-        });
+    var $btns = $('.btn').click(function() {
+        if (this.id == 'all') {
+            $('#parent > div').fadeIn(450);
+        } else {
+            var $el = $('.' + this.id).fadeIn(450);
+            console.log($el);
+            $('#parent > div').not($el).hide();
+        }
+        $btns.removeClass('active');
+        $(this).addClass('active');
     });
     </script>
     <script>
