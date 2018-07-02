@@ -60,17 +60,9 @@ def mentions(request, account):
     return render(request, 'dashboard/mentions.html', {'mentions': mentions})
 
 
-def tools(request):
-    return render(request, 'dashboard/tools.html')
-
-
 def repos(request):
     return render(request, 'dashboard/github-repos.html')
 
 
 def eos_911(request):
     return render(request, 'dashboard/911.html')
-
-
-def dapps(request):
-    return render(request, 'dashboard/dapps.html')

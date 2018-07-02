@@ -26,6 +26,7 @@
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="{% static 'dashboard/assets/plugins/pace/pace.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
+    <style type="text/css"></style>
 </head>
 
 <body>
@@ -49,14 +50,14 @@
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
                 <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-                <li class="breadcrumb-item active">Tools</li>
+                <li class="breadcrumb-item active">Dapps</li>
             </ol>
             <!-- end breadcrumb -->
             <!-- begin page-header -->
             <h1 class="page-header m-b-10">EOSiO Dapps <small>All Categories</small></h1>
             <!-- end page-header -->
             <p class="m-b-20">
-                This is a collection of the first Dapps made for the EOS Blockchain. We've left any out? Submit it
+                This is a collection of Dapps made for the EOS Blockchain. We've left any out? Submit it
                 <a href="#gallery-group-1" class="btn btn-outline-primary  btn-xs">here</a>
             </p>
             <div id="options" class="m-b-10">
@@ -71,7 +72,6 @@
                 </span>
             </div>
             <!-- begin row -->
-            <br>
             <!-- BEGIN #my-account -->
             <div id="about-us-cover" class="section-container">
                 <!-- BEGIN container -->
@@ -91,6 +91,21 @@
                                 <p>
                                     All you need in one place. All with a few simple clicks.
                                 </p>
+                                <div id="options" class="m-b-10 text-center">
+                                    <span class="gallery-option-set" id="filter" data-option-key="filter">
+
+                                        <a href="https://recovery.eos911.io/" title="EOS 911 Emergency Website" class="btn btn-outline-success"  title="Website">
+                                            <i class="fa fa-globe"></i>
+                                        </a>
+                                        <a href="https://t.me/EOS911" title="EOS 911 Telegram Channel" class="btn btn-outline-success"  title="Telegram" >
+                                            <i class="fab fa-telegram-plane"></i>
+                                        </a>
+                                        <a href="https://recovery.eos911.io/" title="EOS 911 Code on Github" class="btn btn-outline-success"  title="Github"  >
+                                            <i class="fab fa-github"></i>
+                                        </a> 
+                           
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <!-- END account-sidebar -->
@@ -99,38 +114,21 @@
                             <!-- BEGIN row -->
                             <div class="row">
                                 <!-- BEGIN col-6 -->
-                                <div class="col-md-6">
-                                    <h4><i class="fa fa-gitlab fa-fw text-muted"></i> Orders</h4>
-                                    <ul class="nav nav-list">
-                                        <li><a href="#">Check the status of an order</a></li>
-                                        <li><a href="#">Track a shipment</a></li>
-                                        <li><a href="#">Pre-sign for a delivery</a></li>
-                                        <li><a href="#">Cancel items</a></li>
-                                        <li><a href="#">Print an invoice</a></li>
-                                        <li><a href="#">Return items</a></li>
-                                        <li><a href="#">Change shipping or billing info for an order</a></li>
-                                        <li><a href="#">Edit gift messaging or engraving</a></li>
-                                        <li><a href="#">View order history</a></li>
-                                    </ul>
-                                    <h4><i class="fa fa-universal-access fa-fw text-muted"></i> Account Settings</h4>
-                                    <ul class="nav nav-list">
-                                        <li><a href="#">Update your email address and password</a></li>
-                                        <li><a href="#">Change your default shipping or billing info</a></li>
-                                        <li><a href="#">Manage email subscriptions</a></li>
-                                    </ul>
+                                <div class="col-md-6 hidden-xs">
+                                    <h4><i class="fa fa-info-circle text-muted text-success"></i> About </h4> 
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores voluptates nostrum molestias, similique laudantium quisquam deleniti magnam adipisci. Ad cumque fugiat quia officiis iusto aliquid dicta nulla, quasi perspiciatis aperiam?
+                                    <hr>
+                                    <h4><i class="fa fa-users-cog text-muted text-warning"></i>Team</h4>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima voluptas ea aperiam perspiciatis vel in at corrupti consequatur laborum, blanditiis, culpa magni illo ipsa alias, et maxime voluptates ipsum deserunt.
                                 </div>
                                 <!-- END col-6 -->
                                 <!-- BEGIN col-6 -->
                                 <div class="col-md-6">
-                                    <h4><i class="fa fa-cc-visa fa-fw text-muted"></i> Payments & Financing</h4>
-                                    <ul class="nav nav-list">
-                                        <li><a href="#">Check the balance of a gift card</a></li>
-                                        <li><a href="#">Check the status of a rebate</a></li>
-                                    </ul>
-                                    <h4><i class="fa fa-wpforms fa-fw text-muted"></i> Specialists</h4>
-                                    <ul class="nav nav-list">
-                                        <li><a href="#">View your previous activity</a></li>
-                                    </ul>
+                                    <h4><i class="fa fa-certificate text-muted text-danger"></i> Licence</h4>
+                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore fuga aliquid enim voluptas doloremque molestiae, quas voluptatibus distinctio aspernatur. Nihil recusandae ullam totam minus nam eaque officia, vero praesentium commodi!
+                                   <hr>
+                                    <h4><i class="fa fa-question-circle text-muted"></i> Status</h4>
+                                    <h6><i class="fa fa-circle text-success"></i> Live</h6>
                                 </div>
                                 <!-- END col-6 -->
                             </div>

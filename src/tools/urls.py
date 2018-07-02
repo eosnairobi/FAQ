@@ -13,22 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include, re_path
-from django.conf import settings
-from django.conf.urls.static import static
-import notifications.urls
-# from django.
+from django.urls import path, re_path
+from .views import tools, dapps
+
+
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+# router.register(r'api/questions', QuestionModelViewSet, base_name='questions')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('faq.urls')),
-    path('', include('map.urls')),
-    path('', include('tools.urls')),
-    re_path('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
+    path('tools/', tools, name='tools'),
+    path('dapps/', dapps, name='dapps'),
 ]
 
-if settings.DEBUG:
-    if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+
+urlpatterns += router.urls
