@@ -66,3 +66,23 @@ def repos(request):
 
 def eos_911(request):
     return render(request, 'dashboard/911.html')
+
+
+def news(request):
+    return render(request, 'dashboard/news.html')
+
+
+def youtube(request):
+    return render(request, 'dashboard/youtube.html')
+
+
+def testnets(request):
+    return render(request, 'dashboard/testnets.html')
+
+
+def steem(request):
+    return render(request, 'dashboard/steem.html')
+
+
+def twitter(request):
+    return render(request, 'dashboard/twitter.html')

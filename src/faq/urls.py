@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, re_path
-from .views import dashboard, forum, forum_list, questions, question, answer, mentions, repos, eos_911
+from .views import (dashboard, forum, forum_list, questions, question, answer,
+                    mentions, repos, eos_911, news, steem, testnets, youtube, twitter)
 from .api.views import (TagModelViewSet, QuestionModelViewSet, AnswerUpvoteViewSet,
                         create_faq, save_reaction, AnswerModelViewsSet)
 
