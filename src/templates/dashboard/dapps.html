@@ -1,4 +1,4 @@
-{% load staticfiles notifications_tags %}
+{% load staticfiles notifications_tags easy_thumbnails_tags %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -60,37 +60,26 @@
                 This is a collection of Dapps made for the EOS Blockchain. We've left any out? Submit it
                 <a href="#gallery-group-1" class="btn btn-outline-primary  btn-xs">here</a>
             </p>
-            <div id="options" class="m-b-10">
-                <span class="gallery-option-set" id="filter" data-option-key="filter">
-
-                    <a href="#show-all" class="btn btn-outline-success  btn-xs active" data-option-value="*">Show All</a>
-                    <a href="#gallery-group-1" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-1">Banking</a>
-                    <a href="#gallery-group-2" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-2">Exchanges</a>
-                    <a href="#gallery-group-3" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-3">Gaming</a>
-                    <a href="#gallery-group-4" class="btn btn-outline-success  btn-xs" data-option-value=".gallery-group-4">Others</a>
-                     <input type="text" class="form-control" id="filter" placeholder="Filter By Name">
-                </span>
-            </div>
+          <hr>
             <!-- begin row -->
             <!-- BEGIN #my-account -->
             <div id="about-us-cover" class="section-container">
                 <!-- BEGIN container -->
                 <div class="container">
                     <!-- BEGIN account-container -->
+                    {% for dapp in dapps %}
                     <div class="account-container">
                         <!-- BEGIN account-sidebar -->
                         <div class="account-sidebar">
                             <div class="account-sidebar-cover">
-                                <img src="{% static 'dapps/deos.png' %}" alt="" />
+                                <img src="{% thumbnail dapp.image|default:'deos.png' 600x600 %}" alt="" />
                             </div>
                             <div class="account-sidebar-content">
-                                <h5 class="text-success">DEOS</h5>
+                                <h5 class="text-success">{{ dapp.name }}</h5>
                                 <p>
-                                    This is an #EOS Dapp
+                                    {{ dapp.about }}
                                 </p>
-                                <p>
-                                    All you need in one place. All with a few simple clicks.
-                                </p>
+                              
                                 <div id="options" class="m-b-10 text-center">
                                     <span class="gallery-option-set" id="filter" data-option-key="filter">
 
@@ -116,7 +105,7 @@
                                 <!-- BEGIN col-6 -->
                                 <div class="col-md-6 hidden-xs">
                                     <h4><i class="fa fa-info-circle text-muted text-success"></i> About </h4> 
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores voluptates nostrum molestias, similique laudantium quisquam deleniti magnam adipisci. Ad cumque fugiat quia officiis iusto aliquid dicta nulla, quasi perspiciatis aperiam?
+                                    
                                     <hr>
                                     <h4><i class="fa fa-users-cog text-muted text-warning"></i>Team</h4>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima voluptas ea aperiam perspiciatis vel in at corrupti consequatur laborum, blanditiis, culpa magni illo ipsa alias, et maxime voluptates ipsum deserunt.
@@ -136,6 +125,8 @@
                         </div>
                         <!-- END account-body -->
                     </div>
+                    <hr>
+                    {% endfor %}
                     <!-- END account-container -->
                 </div>
                 <!-- END container -->
