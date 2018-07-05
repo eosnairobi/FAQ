@@ -30,7 +30,9 @@
 </head>
 
 <body>
-    <div id="page-loader" class="fade show"><span class="spinner"></span></div>
+    <div id="page-loader" class="fade show">
+        <span class="spinner"></span>
+    </div>
     <!-- end #page-loader -->
     <!-- begin #page-container -->
     <div id="page-container" class="page-container fade page-header-fixed page-sidebar-fixed page-with-top-menu">
@@ -49,18 +51,22 @@
         <div id="content" class="content">
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
-                <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:;">Home</a>
+                </li>
                 <li class="breadcrumb-item active">Dapps</li>
             </ol>
             <!-- end breadcrumb -->
             <!-- begin page-header -->
-            <h1 class="page-header m-b-10">EOSiO Dapps <small>All Categories</small></h1>
+            <h1 class="page-header m-b-10">EOSiO Dapps
+                <small>All Categories</small>
+            </h1>
             <!-- end page-header -->
             <p class="m-b-20">
                 This is a collection of Dapps made for the EOS Blockchain. We've left any out? Submit it
                 <a href="#gallery-group-1" class="btn btn-outline-primary  btn-xs">here</a>
             </p>
-          <hr>
+            <hr>
             <!-- begin row -->
             <!-- BEGIN #my-account -->
             <div id="about-us-cover" class="section-container">
@@ -79,20 +85,20 @@
                                 <p>
                                     {{ dapp.about }}
                                 </p>
-                              
+
                                 <div id="options" class="m-b-10 text-center">
                                     <span class="gallery-option-set" id="filter" data-option-key="filter">
 
-                                        <a href="https://recovery.eos911.io/" title="EOS 911 Emergency Website" class="btn btn-outline-success"  title="Website">
+                                        <a href="https://recovery.eos911.io/" title="EOS 911 Emergency Website" class="btn btn-outline-success" title="Website">
                                             <i class="fa fa-globe"></i>
                                         </a>
-                                        <a href="https://t.me/EOS911" title="EOS 911 Telegram Channel" class="btn btn-outline-success"  title="Telegram" >
+                                        <a href="https://t.me/EOS911" title="EOS 911 Telegram Channel" class="btn btn-outline-success" title="Telegram">
                                             <i class="fab fa-telegram-plane"></i>
                                         </a>
-                                        <a href="https://recovery.eos911.io/" title="EOS 911 Code on Github" class="btn btn-outline-success"  title="Github"  >
+                                        <a href="https://recovery.eos911.io/" title="EOS 911 Code on Github" class="btn btn-outline-success" title="Github">
                                             <i class="fab fa-github"></i>
-                                        </a> 
-                           
+                                        </a>
+
                                     </span>
                                 </div>
                             </div>
@@ -104,20 +110,28 @@
                             <div class="row">
                                 <!-- BEGIN col-6 -->
                                 <div class="col-md-6 hidden-xs">
-                                    <h4><i class="fa fa-info-circle text-muted text-success"></i> About </h4> 
-                                    
+                                    <h4>
+                                        <i class="fa fa-info-circle text-muted text-success"></i> About </h4>
+
                                     <hr>
-                                    <h4><i class="fa fa-users-cog text-muted text-warning"></i>Team</h4>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima voluptas ea aperiam perspiciatis vel in at corrupti consequatur laborum, blanditiis, culpa magni illo ipsa alias, et maxime voluptates ipsum deserunt.
+                                    <h4>
+                                        <i class="fa fa-users-cog text-muted text-warning"></i>Team</h4>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima voluptas ea aperiam perspiciatis vel in at corrupti consequatur
+                                    laborum, blanditiis, culpa magni illo ipsa alias, et maxime voluptates ipsum deserunt.
                                 </div>
                                 <!-- END col-6 -->
                                 <!-- BEGIN col-6 -->
                                 <div class="col-md-6">
-                                    <h4><i class="fa fa-certificate text-muted text-danger"></i> Licence</h4>
-                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore fuga aliquid enim voluptas doloremque molestiae, quas voluptatibus distinctio aspernatur. Nihil recusandae ullam totam minus nam eaque officia, vero praesentium commodi!
-                                   <hr>
-                                    <h4><i class="fa fa-question-circle text-muted"></i> Status</h4>
-                                    <h6><i class="fa fa-circle text-success"></i> Live</h6>
+                                    <h4>
+                                        <i class="fa fa-certificate text-muted text-danger"></i> Licence</h4>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore fuga aliquid enim voluptas doloremque molestiae, quas voluptatibus
+                                    distinctio aspernatur. Nihil recusandae ullam totam minus nam eaque officia, vero praesentium
+                                    commodi!
+                                    <hr>
+                                    <h4>
+                                        <i class="fa fa-question-circle text-muted"></i> Status</h4>
+                                    <h6>
+                                        <i class="fa fa-circle text-success"></i> Live</h6>
                                 </div>
                                 <!-- END col-6 -->
                             </div>
@@ -125,8 +139,7 @@
                         </div>
                         <!-- END account-body -->
                     </div>
-                    <hr>
-                    {% endfor %}
+                    <hr> {% endfor %}
                     <!-- END account-container -->
                 </div>
                 <!-- END container -->
@@ -135,7 +148,8 @@
             <div class="not-found" hidden="true">
                 <div id="error-msg">
                     <div class="alert alert-danger m-b-0 m-t-15 text-center">No Item matching your query has been found.
-                        <br> You can <a href="">View All Items Instead</a>
+                        <br> You can
+                        <a href="">View All Items Instead</a>
                     </div>
                 </div>
             </div>
@@ -143,7 +157,9 @@
         <!-- end #content -->
         <!-- begin theme-panel -->
         <!-- begin scroll to top btn -->
-        <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+        <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
         <!-- end scroll to top btn -->
     </div>
     <!-- end page container -->
@@ -162,56 +178,58 @@
     <script src="{% static 'dashboard/assets/js/apps.min.js' %}"></script>
     <!-- ================== END BASE JS ================== -->
     <script>
-    $(document).ready(function() {
-        App.init();
-    });
-    </script>
-    <script>
-    $("#filter").keyup(function() {
-
-        // Retrieve the input field text and reset the count to zero
-        var filter = $(this).val(),
-            count = 0;
-
-
-        // Loop through the comment list
-        $(".card-body").each(function() {
-
-            // If the list item does not contain the text phrase fade it out
-            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-                $(this).hide();
-                console.log('In if Statement Count =' + count + ' Variable =' + $(this).text().search(new RegExp(filter, "i")));
-                if (count < 1) {
-                    console.log('None found');
-                    $(".not-found").show();
-                }
-
-                // Show the list item if the phrase matches and increase the count by 1
-            } else {
-                $(this).fadeIn();
-                $(".not-found").hide();
-                console.log($(this).text().search(new RegExp(filter, "i")));
-                count++;
-                console.log('In Else Statement Count=' + count + 'Variable =' + $(this).text().search(new RegExp(filter, "i")))
-            }
+        $(document).ready(function () {
+            App.init();
         });
-    });
     </script>
     <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        $("#filter").keyup(function () {
 
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
+            // Retrieve the input field text and reset the count to zero
+            var filter = $(this).val(),
+                count = 0;
+
+
+            // Loop through the comment list
+            $(".card-body").each(function () {
+
+                // If the list item does not contain the text phrase fade it out
+                if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                    $(this).hide();
+                    console.log('In if Statement Count =' + count + ' Variable =' + $(this).text().search(
+                        new RegExp(filter, "i")));
+                    if (count < 1) {
+                        console.log('None found');
+                        $(".not-found").show();
+                    }
+
+                    // Show the list item if the phrase matches and increase the count by 1
+                } else {
+                    $(this).fadeIn();
+                    $(".not-found").hide();
+                    console.log($(this).text().search(new RegExp(filter, "i")));
+                    count++;
+                    console.log('In Else Statement Count=' + count + 'Variable =' + $(this).text().search(
+                        new RegExp(filter, "i")))
+                }
+            });
+        });
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-53034621-1', 'auto');
+        ga('send', 'pageview');
     </script>
 </body>
 

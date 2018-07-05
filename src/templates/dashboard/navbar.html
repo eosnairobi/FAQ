@@ -2,7 +2,7 @@
 <div id="header" class="header navbar-inverse">
     <!-- begin navbar-header -->
     <div class="navbar-header">
-        <a href="index.html" class="navbar-brand"> <b>EOSiO</b> Hub</a>
+        <a href="/" class="navbar-brand"> <b>EOSiO</b> Hub</a>
         <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -40,12 +40,13 @@
                 <li class="arrow"></li>
                 <li><a href="javascript:;">Edit Profile</a></li>
                 <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-                <li><a href="javascript:;">Calendar</a></li>
-                <li><a href="javascript:;">Setting</a></li>
+                
                 <li class="divider"></li>
-                <li><a href="javascript:;">Log Out</a></li>
+                <li><a href="/logout">Log Out</a></li>
             </ul>
         </li>
+        {% else %}
+
         {% endif %}
     </ul>
     <!-- end header navigation right -->
