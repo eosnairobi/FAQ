@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 
 def dashboard(request):
     categories = ToolCategory.objects.all().order_by('name')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
     return render(request, 'dashboard/home.html', {'categories':categories})
 
 
@@ -63,28 +65,42 @@ def mentions(request, account):
 
 
 def repos(request):
-    return render(request, 'dashboard/github-repos.html')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
+    return render(request, 'dashboard/github-repos.html',{'categories': categories})
 
 
 def eos_911(request):
-    return render(request, 'dashboard/911.html')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
+    return render(request, 'dashboard/911.html',{'categories': categories})
 
 
 def news(request):
-    return render(request, 'dashboard/news.html')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
+    return render(request, 'dashboard/news.html',{'categories': categories})
 
 
 def youtube(request):
-    return render(request, 'dashboard/youtube.html')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
+    return render(request, 'dashboard/youtube.html', {'categories': categories})
 
 
 def testnets(request):
-    return render(request, 'dashboard/testnets.html')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
+    return render(request, 'dashboard/testnets.html', {'categories': categories})
 
 
 def steem(request):
-    return render(request, 'dashboard/steem.html')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
+    return render(request, 'dashboard/steem.html', {'categories': categories})
 
 
 def twitter(request):
-    return render(request, 'dashboard/twitter.html')
+    tools = Tool.objects.all()
+    categories = ToolCategory.objects.all()
+    return render(request, 'dashboard/twitter.html', {'categories': categories})
