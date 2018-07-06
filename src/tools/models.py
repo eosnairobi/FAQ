@@ -66,3 +66,14 @@ class Tool(models.Model):
 
 class SuggestedTool(Tool):
     pass
+
+
+class SuggestedCommunityTool(models.Model):
+    name = models.CharField(max_length=30)
+    created_by = models.CharField(max_length=50)
+    link = models.URLField()
+    creator_url = models.URLField()
+    image = models.ImageField(upload_to=tool_directory_path)
+    category = models.ForeignKey(ToolCategory, related_name='tool_cat', null=True, on_delete=models.SET_NULL)
+    about = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)

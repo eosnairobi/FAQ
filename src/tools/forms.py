@@ -1,9 +1,9 @@
 from django import forms
-from .models import SuggestedTool
+from .models import SuggestedCommunityTool
 
 
 class SuggestionForm(forms.ModelForm):
     class Meta:
-        model = SuggestedTool
+        model = SuggestedCommunityTool
         fields ='__all__'
         exclude = ('about',)
