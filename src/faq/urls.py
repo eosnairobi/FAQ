@@ -27,7 +27,7 @@ router.register(r'api/questions', QuestionModelViewSet, base_name='questions')
 router.register(r'api/answers', AnswerModelViewsSet, base_name='answers')
 
 urlpatterns = [
-    path('', dashboard, name='home'),
+    path('home/', dashboard, name='home'),
     # path('tools/', tools, name='all_tools'),
     path('forum/', forum, name='forum'),
     path('forum-list/', forum_list, name='forum-list'),

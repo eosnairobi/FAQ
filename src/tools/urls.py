@@ -24,7 +24,7 @@ router = DefaultRouter()
 # router.register(r'api/questions', QuestionModelViewSet, base_name='questions')
 
 urlpatterns = [
-    path('tools/', tools, name='tools'),
+    path('', tools, name='tools'),
     path('dapps/', dapps, name='dapps'),
 ]
 
