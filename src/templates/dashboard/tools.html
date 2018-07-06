@@ -1,4 +1,4 @@
-{% load staticfiles notifications_tags easy_thumbnails_tags %}
+{% load staticfiles notifications_tags easy_thumbnails_tags crispy_forms_tags %}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -90,10 +90,12 @@
 </head>
 
 <body>
+     
     <div id="page-loader" class="fade show"><span class="spinner"></span></div>
     <!-- end #page-loader -->
     <!-- begin #page-container -->
     <div id="page-container" class="page-container fade page-header-fixed page-sidebar-fixed page-with-top-menu">
+        
         <!-- begin #header -->
         {% include 'dashboard/navbar.html' %}
         <!-- end #header -->
@@ -118,7 +120,7 @@
             <!-- end page-header -->
             <p class="m-b-20">
                 This is a collection of tools developed for the community by members of the community. We may have missed some, and we ask you to submit it
-                <a href="#gallery-group-1" class="btn btn-outline-primary  btn-xs">here</a>
+                <a href="#suggest" data-toggle="modal" class="btn btn-outline-primary  btn-xs">here.</a> We promise to review as fast as possible and add to the list. 
             </p>
             <div id="options" class="m-b-10">
                 <span class="gallery-option-set" id="filter" data-option-key="filter">
@@ -127,7 +129,7 @@
                     {% for category in categories %}
                      <button class="btn btn-outline-success btn-xs" id="{{ category.id }}">{{ category.name }}</button>
                      {% endfor %}
-                     <input type="text" class="form-control" id="filter" placeholder="Filter By Name">
+                     {% comment %} <input type="text" class="form-control" id="filter" placeholder="Filter By Name"> {% endcomment %}
                     
                 </span>
             </div>
@@ -152,13 +154,29 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="not-found" hidden="true">
-            <div id="error-msg">
-                <div class="alert alert-danger m-b-0 m-t-15 text-center">No Item matching your query has been found.
-                    <br> You can <a href="">View All Items Instead</a>
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="suggest" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <form id='question_form' method="POST" action="{% url 'tools' %}" enctype="multipart/form-data"> {% csrf_token %}
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center">What did we miss?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                                
+                                <div id="err"></div>
+                                
+                                    {{ form | crispy }}
+                                
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
+                                <input type="submit" class="btn btn-success"/>
+                            </div>
+                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
     <!-- end #content -->
     <!-- begin theme-panel -->

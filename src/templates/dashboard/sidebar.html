@@ -1,86 +1,77 @@
+{% load staticfiles easy_thumbnails_tags %}
 <!-- begin #sidebar -->
-        <div id="sidebar" class="sidebar">
-            <!-- begin sidebar scrollbar -->
-            <div data-scrollbar="true" data-height="100%">
-                <!-- begin sidebar user -->
-                <ul class="nav">
-                    <li class="nav-profile">
-                        <a href="javascript:;" data-toggle="nav-profile">
-                            <div class="cover with-shadow"></div>
-                            <div class="image">
-                                <img src="../assets/img/user/user-13.jpg" alt="" />
-                            </div>
-                            <div class="info">
-                                <b class="caret pull-right"></b>
-                                {{ request.user}}
-                            </div>
-                        </a>
+<div id="sidebar" class="sidebar">
+    <!-- begin sidebar scrollbar -->
+    <div data-scrollbar="true" data-height="100%">
+        <!-- begin sidebar user -->
+        <ul class="nav">
+            <li class="nav-profile">
+                <a href="javascript:;" data-toggle="nav-profile">
+                    <div class="cover with-shadow"></div>
+                    {% if request.user.is_authenticated %}
+                    <div class="image">
+                        <img src="{% thumbnail question.author.profile.photo|default:'default_profile.png' 50x50 crop %}" alt="" />
+                    </div>
+                    <div class="info">
+                        <b class="caret pull-right"></b>
+                        {{ request.user }}
+                    </div>
+                {% else   %}
+                <div class="info">
+                        <b class="caret pull-right"></b>
+                        Hello, Guest.
+                </div>
+                {% endif %}
+                </a>
+            </li>
+            <li>
+                <ul class="nav nav-profile">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-cog"></i> Settings</a>
                     </li>
                     <li>
-                        <ul class="nav nav-profile">
-                            <li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="javascript:;"><i class="fa fa-pencil-alt"></i> Send Feedback</a></li>
-                            <li><a href="javascript:;"><i class="fa fa-question-circle"></i> Help</a></li>
-                        </ul>
+                        <a href="javascript:;">
+                            <i class="fa fa-pencil-alt"></i> Send Feedback</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-question-circle"></i> Help</a>
                     </li>
                 </ul>
-                <!-- end sidebar user -->
-                <!-- begin sidebar nav -->
-                <ul class="nav">
-                    <li class="nav-header">Navigation</li>
-                    
-                    <li>
-                        <a href="">
-                            <div class="icon-img">
-                                <img src="../assets/img/logo/logo-bs4.png" alt="" />
-                            </div>
-                            <span>#EOSiO WhitePaper <span class="label label-theme m-l-5">NEW</span></span> 
-                        </a>
-                    </li>
-                   
-                    <li>
-                        <a href="/forum">
-                            <div class="icon-img">
-                                <img src="../assets/img/logo/logo-bs4.png" alt="" />
-                            </div>
-                            <span>Forum <span class="label label-theme m-l-5">NEW</span></span> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="icon-img">
-                                <img src="../assets/img/logo/logo-bs4.png" alt="" />
-                            </div>
-                            <span>#EOSiO WhitePaper <span class="label label-theme m-l-5">NEW</span></span> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="icon-img">
-                                <img src="../assets/img/logo/logo-bs4.png" alt="" />
-                            </div>
-                            <span>#EOSiO WhitePaper <span class="label label-theme m-l-5">NEW</span></span> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="bootstrap_4.html">
-                            <div class="icon-img">
-                                <img src="../assets/img/logo/logo-bs4.png" alt="" />
-                            </div>
-                            <span>#EOSiO WhitePaper <span class="label label-theme m-l-5">NEW</span></span> 
-                        </a>
-                    </li>
-                   
-                   
-                   
-                   
-                    <!-- begin sidebar minify button -->
-                    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
-                    <!-- end sidebar minify button -->
-                </ul>
-                <!-- end sidebar nav -->
-            </div>
-            <!-- end sidebar scrollbar -->
-        </div>
-        <div class="sidebar-bg"></div>
-        <!-- end #sidebar -->
+            </li>
+        </ul>
+        <!-- end sidebar user -->
+        <!-- begin sidebar nav -->
+        <ul class="nav">
+            <li class="nav-header">Popular Tools</li>
+            {% for category in categories %}
+            <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fa fa-th-large"></i>
+                        <span>{{ category.name }}</span>
+                    </a>
+                    <ul class="sub-menu">
+                        {% for tool in category.tool_category.all %}
+                        <li><a href="{{ tool.link }}">{{ tool.name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            <!-- begin sidebar minify button -->
+            <li>
+                <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify">
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
+            </li>
+            <!-- end sidebar minify button -->
+        </ul>
+        <!-- end sidebar nav -->
+    </div>
+    <!-- end sidebar scrollbar -->
+</div>
+
+</div>
+<div class="sidebar-bg"></div>
+<!-- end #sidebar -->

@@ -9,7 +9,7 @@ STATUS_CHOICES = (
 
 
 def dapp_directory_path(instance, filename):
-    # image will be uploaded to MEDIA_ROOT/dapps/>/profile/<filename>
+    # image will be uploaded to MEDIA_ROOT/dapps/<filename>
     return 'dapps/{0}/{1}'.format(instance.name, filename)
 
 
@@ -57,9 +57,12 @@ class Tool(models.Model):
     link = models.URLField()
     creator_url = models.URLField()
     image = models.ImageField(upload_to=tool_directory_path)
-    category = models.ForeignKey(ToolCategory, null=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(ToolCategory, related_name='tool_category', null=True, on_delete=models.SET_NULL)
     about = models.TextField(blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.name
+
+class SuggestedTool(Tool):
+    pass

@@ -63,8 +63,7 @@
             </h1>
             <!-- end page-header -->
             <p class="m-b-20">
-                This is a collection of Dapps made for the EOS Blockchain. We've left any out? Submit it
-                <a href="#gallery-group-1" class="btn btn-outline-primary  btn-xs">here</a>
+              
             </p>
             <hr>
             <!-- begin row -->
@@ -72,8 +71,9 @@
             <div id="about-us-cover" class="section-container">
                 <!-- BEGIN container -->
                 <div class="container">
+                       <div class=""> We are working hard to compile the entire list of Dapps.</div>
                     <!-- BEGIN account-container -->
-                    {% for dapp in dapps %}
+                    {% comment %} {% for dapp in dapps %}
                     <div class="account-container">
                         <!-- BEGIN account-sidebar -->
                         <div class="account-sidebar">
@@ -139,7 +139,7 @@
                         </div>
                         <!-- END account-body -->
                     </div>
-                    <hr> {% endfor %}
+                    <hr> {% endfor %} {% endcomment %}
                     <!-- END account-container -->
                 </div>
                 <!-- END container -->

@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .forms import QuestionModelForm
 from .models import Question, Category, Answer, Mention
+from tools.models import Tool, ToolCategory
 from django.contrib.auth.models import User
 
 
 def dashboard(request):
-    return render(request, 'dashboard/home.html')
+    categories = ToolCategory.objects.all().order_by('name')
+    return render(request, 'dashboard/home.html', {'categories':categories})
 
 
 def forum(request):

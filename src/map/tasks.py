@@ -78,8 +78,7 @@ import json
 
 """
 
-
-# @
+@shared_task
 def obtain_bp_json():
     """ 
         Task to run every midnight, to update the state of the BP Locations
@@ -101,7 +100,7 @@ def obtain_bp_json():
         except Exception as e:
             errors.append(str(e))
 
-
+@shared_task
 def process_bp_json(bp, data):
     """
         Parses the bp.json file info and saves the lat, long of the BP
