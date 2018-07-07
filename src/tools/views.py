@@ -11,8 +11,8 @@ def dapps(request):
 
 
 def tools(request):
-    tools = Tool.objects.all()
-    categories = ToolCategory.objects.all()
+    tools = Tool.objects.all().order_by('name')
+    categories = ToolCategory.objects.all().order_by('name')
     if request.method == 'POST':
         form = SuggestionForm(request.POST or None, files=request.FILES)
         if form.is_valid():
