@@ -23,7 +23,7 @@ django-model-utils==3.1.2
 django-notifications-hq==1.4.0
 djangorestframework==3.8.2
 easy-thumbnails==2.5
-ecdsa==0.13
+ecdsa==0.13.3
 Events==0.3
 funcy==1.10.2
 future==0.16.0
